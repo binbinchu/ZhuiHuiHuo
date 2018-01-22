@@ -1,0 +1,141 @@
+<link rel="stylesheet" href=" zcy-style.css/search.css"/>
+<link rel="stylesheet" href=" zcy-style.css/public.css"/>
+<!--内容部分-->
+<div id="z-main" class="z-clearfix">
+    <div class="z-mainHd z-clearfix">
+        <div class="z-pic z-fl"></div>
+        <div class="z-input z-fl">
+            <input type="text" placeholder="搜索内容" class="search_htmlText">
+        </div>
+        <div class="z-cancel z-fl"></div>
+        <input type="button" class="z-fr search_Btn" value="搜索"/>
+    </div>
+    <div class="z-mainFt">
+        <div class="z-ftHd">
+            <span class="z-course">课程</span>
+            <span class="z-chat">下课聊</span>
+            <span class="z-qb">题库</span>
+            <div class="z-border"></div>
+        </div>
+        <div id="z-hunt" class="searchTmpl">
+            <div class="tabs search_Crouse tabsActive">
+                <ul class='search_CrouseUl'>
+                    <script id="search_CrouseUl" type="text/html">
+                        <li class='search_CrouseLi' course-id="${course_id}">
+                            <a href="#outline" target="_blank">
+                                <div class="CrouseImg left">
+                                    <img src="http://admin.zhihuihuo.com.cn/${course_cover}"/>
+							</div>
+                                <div class="CrouseCon left">
+                                    <h3>${course_name}</h3>
+                                    <div class="CrouseConP_Box">
+                                        <p>${course_description}</p>
+                                    </div>
+							</div>
+                            </a>
+                            <input type="hidden" name="course_credit" id="course_credit" value="${course_credit}"/>
+                        </li>
+                    </script>
+                </ul>
+            </div>
+            <div class="tabs search_Chart">
+                <ul class='search_ChartUl'>
+                    <script id="search_ChartUl" type="text/html">
+                        <li class='search_ChartLi' forum-id="${forum_id}">
+                            <a href="#chartCon" target="_blank">
+                                <div class="ChartTitle">
+                                    <h3>${forum_title}</h3>
+                                </div>
+                                <div class="ChartCon">
+                                    <p>${forum_content}</p>
+							</div>
+                                {{if forum_thumb}}
+                                {{each forum_thumb}}
+                                <div class="ChartImg">
+                                    {{if $value}}
+                                    <img src="http://admin.zhihuihuo.com.cn/${$value}"/>
+                                    {{else}}
+                                    <span></span>
+                                    {{/if}}
+                                </div>
+                                {{/each}}
+                                {{/if}}
+                            </a>
+                        </li>
+                    </script>
+                </ul>
+            </div>
+            <div class="tabs search_Ques">
+                <ul class='search_QuesUl'>
+                    <script id="search_QuesUl" type="text/html">
+                        <li class='search_QuesLi' sid='${exampaper_id}' courseid="${exampaper_courseid}">
+                            <a href="#testpaper" target="_blank">
+                                <div class="CrouseImg left">
+                                    {{if !exampaper_img}}
+                                    <img src="img/crouseAdmin.png" style="width: 187px;height: 187px;"/>
+                                    {{else}}
+                                    <img src="http://admin.zhihuihuo.com.cn/${exampaper_img}" style="width: auto;height: 134px;"/>
+                                    {{/if}}
+                                </div>
+                                <div class="CrouseCon left">
+                                    <h3>${exampaper_name}</h3>
+                                    <div class="CrouseConP_Box">
+                                        <p>${exampaper_description}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </script>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".z-ftHd span").click(function () {
+            var i = $(this).index();
+            $(".tabs").eq(i).addClass('tabsActive').siblings().removeClass('tabsActive');
+            $(".z-border").css("left", 40 + i * 184);
+            $(this).css("color", '#02A8F3');
+            $(this).siblings().css("color", 'black');
+        });
+        $(".z-cancel").click(function () {
+            $(".search_htmlText").val('');
+        });
+    });
+</script>
+<script type="text/javascript">
+    //课程信息储存
+    $(".search_CrouseLi").live('click', function () {
+        var cid = $(this).attr('course-id');
+        var course_cover = $(this).find('img').attr('src');
+        var course_name = $(this).find('h3').text();
+        var course_credit = $(this).find("input[type='hidden']").val();
+        sessionStorage.setItem('cid', cid);
+        sessionStorage.setItem("cicourse_name", course_name);
+        sessionStorage.setItem("course_cover", course_cover);
+        sessionStorage.setItem("course_credit", course_credit);
+    });
+
+    //下课聊信息储存
+    $(".search_ChartLi").live('click', function () {
+        var forum_id = $(this).attr('forum-id');
+        sessionStorage.setItem('fid', forum_id);
+    });
+
+    //题库信息储存
+    $(".search_QuesLi").live('click', function () {
+        var exampaper_id = $(this).attr("sid");
+        var exampaper_courseid = $(this).attr("courseid");
+        sessionStorage.setItem("sid", exampaper_id);
+        sessionStorage.setItem("courseid", exampaper_courseid);
+//		 
+    });
+
+    //搜索
+    $(".search_Btn").click(function () {
+        var c = $('.search_htmlText').val();
+        Search(c)
+    });
+</script>

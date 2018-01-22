@@ -1,0 +1,166 @@
+/*内容开始*/
+#demo{ 
+	height: 800px;
+	}
+#box{
+	height:200px;
+	width:500px;
+}
+.zUIpanelScrollBox,.zUIpanelScrollBar{
+	width:10px;
+	top:4px;
+	right:2px;
+	border-radius:5px;
+	
+}
+.zUIpanelScrollBox{
+	background:black;opacity:0.1;
+	filter:alpha(opacity=10);
+}
+.zUIpanelScrollBar{
+	background:#02A8F3;opacity:0.8;
+	filter:alpha(opacity=80);
+}
+
+#z-main{
+	min-width: 1100px;
+	width:65%;
+	margin:0px auto 120px;	
+	padding-top:50px;		
+}
+#z-main .z-mainHd{
+	overflow: hidden;
+	height:170px;
+	background:white;
+	margin-bottom:20px;
+	
+}
+#z-main .z-mainHd .z-mainHL{
+	width:20%;
+	height:170px;
+	line-height:170px;
+	text-align:center;
+}
+#z-main .z-mainHd .z-mainPic{
+	width:140px;
+	height:140px;
+	background:black;
+	display:inline-block;
+	vertical-align: middle;
+	border-radius:50%;
+}
+
+#z-main .z-mainHd .z-mainHR{
+	width:80%;
+	height:120px;
+	margin-top:23px;
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsghd{
+	height:40px;
+	margin:15px 0px;
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsghd div{
+	background:#02A8F3;
+	border-radius:20px;
+	height:33px;
+	width:105px;
+	color:white;
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsgft{
+	height:40px;
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsgft div{
+	margin-left:6px;
+	padding:2px 0;
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsgft :nth-child(1){
+	font:20px "微软雅黑";
+	color:black;
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsgft :nth-child(2){
+	color:#24B4F5;
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsghd span{
+	line-height:40px;
+	font:  25px/40px "微软雅黑";
+	margin-left: 50px;
+	
+}
+
+#z-main .z-mainFt{
+	width:100%;
+	background:white;
+	height:815px;
+    position:relative;
+}
+.on{
+	width:100%;
+	height:810px;
+}
+#z-main .z-mainFt .z-grade ul{
+	width:100%;
+	margin-top:15px;
+	margin-bottom: 30px;
+}
+#z-main .z-mainFt .z-grade ul li{
+    width: 29%;
+    float: left;
+    height: 440px;
+    margin: 0 2px 10px 39px;
+    background: #F7F7F7;
+}
+#z-main .z-mainFt .z-grade ul li .z-pic{
+	width:100%;
+	height:190px;
+	margin:0 auto;
+}
+#z-main .z-mainFt .z-grade ul li .z-tit{
+    width: 100%;
+    height: 60px;
+    margin: 0 auto;
+    font: 22px "微软雅黑";
+    line-height: 60px;
+    margin-left: 15px;
+}
+#z-main .z-mainFt .z-grade ul li .z-txt .z-con{
+	height:100px;
+	margin:0 auto;
+	font:16px/31px "微软雅黑";
+    line-height: 31px !important;
+	padding-left:10px;
+}
+.z-ONE h4{
+	margin-left:38px;
+	padding-top:10px;
+	color:deepskyblue;
+}
+#z-main .z-mainFt .z-grade ul li .z-txt{
+	width:100%;margin:5px auto;
+}
+#z-main .z-mainFt .z-grade ul li .z-txt .z-txtHd{
+	background:#F7F7F7;
+	position:relative;
+}
+.z-txt .z-txtHd h2{
+	margin:10px;
+}
+.z-txt .z-txtHd .z-name{
+	text-align:right;
+	font:18px "微软雅黑";
+	color:#43BDF4;
+	margin:10px;
+	padding-bottom:10px;
+}
+.z-txtHd .z-scm img{
+	width:49%;
+	height:180px;
+	display:inline-block;
+    margin-bottom: 37px;
+}
+
+/*内容结束*/
+/*尾部开始*/
+#z-footer{
+	height:250px;
+	background:#666C7C;
+}

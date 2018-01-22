@@ -1,0 +1,106 @@
+<link rel="stylesheet" href=" css/id.css" />
+<link rel="stylesheet" href=" css/public.css" />
+<title>用户等级</title>
+<!--内容部分-->
+<div id="z-main">
+	<div class="z-mainHd z-clearfix">
+		<div class="z-mainHL z-fl">
+			<span class="z-mainPic">
+				<img/>
+			</span>
+		</div>
+		<div class="z-mainHR z-fl">
+			<div class="z-mainMsghd">
+                <span id="chartUser"></span>
+			</div>
+			<div class="z-grade z-message">
+				个人等级
+			</div>
+            <div class="z-gradeMsg userLevel">
+                <script id="userLevel" type="text/html">
+                    <span class="z-level">lv${level}</span>
+                    <span class="z-wbar z-clearfix">
+						<div class="z-barLt z-fl userEx"></div>
+						<div class="z-barRt z-fl">${expnum}/${level_expnum}</div>								
+					</span>
+                    <span class='z-level_level'>LV${level_level}</span>
+                </script>
+			</div>
+			<div class="z-grade z-message">
+				个人等级
+			</div>
+            <div class="completes">
+                <script id="complete1" type="text/html">
+                    <div class="z-gradeMsg">
+                        <span class='z-level'>${text}</span>
+                        <span class="z-evbar z-clearfix">
+						<div class="z-barLt z-fl Needexp"></div>
+						<div class="z-barRt z-fl"></div>						
+					</span>
+                        <span class='z-level_level' style="color:#89D6F9">已完成</span>
+                    </div>
+                </script>
+			</div>
+			<div class="z-grade z-message">
+				个人等级
+			</div>
+			<table class="z-explain">
+				<tr>
+					<th>等级</th>
+					<th>所需经验</th>
+					<th style="text-align:right">升级经验</th>
+				</tr>
+                <script id="z-explain" type="text/html">
+                    <tr>
+                        <td>${level_level}</td>
+                        <td>${level_expnum}</td>
+                        <td>${expnum}</td>
+                    </tr>
+                </script>
+			</table>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    var username = sessionStorage.getItem("username");
+    var uid = sessionStorage.getItem("uid");
+    var userimg = sessionStorage.getItem("userimg");
+    if (uid) {
+        $("#chartUser").html(username);
+        $(".z-mainPic img").attr("src", "http://admin.zhihuihuo.com.cn/" + userimg);
+    } else {
+        alert("您还没登录!")
+    }
+
+    function userLev(F, P, className) {
+        var percent = parseInt(F) / parseInt(P);
+        var ParentS = $(".z-barRt").width();
+        var exWid = ParentS * percent;
+        $(className).width(exWid);
+    };
+    var uid = sessionStorage.getItem("uid");
+    $.ajax({
+        type: "post",
+        url: "http://admin.zhihuihuo.com.cn/api.php/UserExp",
+        dataType: 'JSON',
+        data: {
+            uid: uid
+        },
+        success: function (data) {
+            console.log(data)
+            $("#userLevel").tmpl(data.data.userlevel).appendTo(".userLevel");
+            userLev(data.data.userlevel.expnum, data.data.userlevel.level_expnum, ".userEx");
+            //个人等级
+            for (var i = 0; i < data.data.explist.length; i++) {
+                $("#z-explain").tmpl(data.data.explist[i]).appendTo(".z-explain");
+            }
+            ;
+            //完成情况
+            for (var i = 0; i < data.data.exp.length; i++) {
+//				console.log(data.data.exp[i]);
+                $("#complete1").tmpl(data.data.exp[i]).appendTo(".completes");
+            }
+            ;
+        }
+    });
+</script>

@@ -1,0 +1,123 @@
+<div class="personalWra">
+	<div class="personal">
+		<div class="left personalImgBox">
+			<img src=" img/admin.png" />
+		</div>
+		<div class="left personalData">
+			<div class="personalName">用户名</div>
+			<div class="personalLevel">
+				<!--<script id="personalLevel" type="text/html">-->
+				<p></p>
+				<!--</script>-->
+			</div>
+		</div>
+	</div>
+	<div class="personal_Con">		
+		<ul class="personal_ConA">			
+			<script id="personal_Con1" type="text/html">
+			<li cid="${course_id}" id="K">
+				<a target="_blank" href="#outline">
+					<div class="personal_Title">
+						${course_major_id}
+					</div>
+					<div class="personal_Img">
+						<img src="http://admin.zhihuihuo.com.cn/${course_cover}"/>
+					</div>
+					<div class="personal_introduce">
+						<div class="course_name"><b>${course_name}</b></div>
+						<div class="course_create_teacher_id">${course_create_teacher_id}</div>
+						<div class="course_description">${course_description}</div>
+					</div>
+				</a>
+			</li>						
+			</script>
+			<script id="personal_Con2" type="text/html">
+			<li forum-id="${forum_id}" class="T">
+				<a target="_blank" href="#chartCon">
+					<div class="personal_Title">
+						帖子:${forum_plateid}
+					</div>
+					<div class="personal_introduce2">
+						<div class="forum_title">${forum_title}</div>
+						<div class="forum_content">{{html forum_content}}</div>
+					</div>
+					<div class="personal_Img2">
+						{{if forum_thumb}}
+							{{each forum_thumb}}
+								{{if $value}}
+									<img src="http://admin.zhihuihuo.com.cn/${$value}"/>
+									{{else}}
+									<!--<img src=" img/crouseAdmin.png"/>-->
+									<!--<img src=" img/crouseAdmin.png"/>-->
+								{{/if}}
+							{{/each}}
+						{{/if}}
+					</div>					
+				</a>
+			</li>	
+			</script>
+		</ul>		
+	</div>
+</div>
+<script type="text/javascript">
+	var userid = sessionStorage.getItem('userid');
+	var authorName = sessionStorage.getItem('authorName');
+	if(authorName){
+		$(".personalName").text(authorName);
+	}
+	//获取我的帖子
+	var a = [];
+	$.ajax({
+		type: "get",
+		url: "http://admin.zhihuihuo.com.cn/api.php/BBS/MyForum",
+		dataType: 'JSON',
+		data: {
+			uid: userid
+		},
+		success: function(data) {
+			console.log(data.data[0])
+			for(i in data.data) {
+				a.push(data.data[i]);
+				$("#personal_Con2").tmpl(data.data[i]).appendTo(".personal_ConA");
+			}
+		}
+	});
+	//我的课程
+	var b = [];
+	$.ajax({
+		type: "post",
+		url: "http://admin.zhihuihuo.com.cn/api.php/MyCourse",
+		dataType: 'JSON',
+		data: {
+			uid: userid
+		},
+		success: function(data) {
+			console.log(data.data[0])
+			for(i in data.data) {
+				b.push(data.data[i]);
+				$("#personal_Con1").tmpl(data.data[i]).appendTo(".personal_ConA");				
+			}
+		}
+	});
+	//用户等级
+	$.ajax({
+		type:"get",
+		url:"http://admin.zhihuihuo.com.cn/api.php/UserExp",
+		dataType:'JSON',
+		data:{
+			uid:userid
+		},
+		success:function(data){
+			$(".personalLevel").find("p").text(data.data.userlevel.level+"级");
+			
+		}
+	});
+	$(".T").die().live('click',function(){
+		var fid = $(this).attr('forum-id');
+		sessionStorage.setItem("fid",fid)
+	});
+	$("#K").die().live('click',function(){
+		var cid = $(this).attr('cid');
+		sessionStorage.setItem("cid",cid);
+	});
+</script>

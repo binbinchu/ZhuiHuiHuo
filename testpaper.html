@@ -1,0 +1,207 @@
+<link rel="stylesheet" href=" zcy-style.css/public.css" />
+<link rel="stylesheet" href=" zcy-style.css/testpaper.css" />
+<link rel="stylesheet" href=" font/iconfont.css" />
+<link rel="stylesheet" href=" zcy-style.css/flat/blue.css" />
+<title></title>
+<div id="z-main">
+	<div class="z-hd z-clearfix">
+		<div class="testTitile">
+			<script id="testTitile" type="text/html">
+				<span class="z-queName z-fl">${exampaper_name}</span>
+			</script>
+		</div>
+		<div class="z-pack z-fl">
+			<span class=" z-time" id="countdown">剩余时间&nbsp;
+						<span>60</span>: <span>00</span>
+			</span>
+		</div>
+		<span class="z-answer z-fl" id="z-answer">提交答案</span>
+		<span class="z-exit z-fl" onclick="custom_close()">退出答题</span>
+	</div>
+	<div class="z-ft">
+		<form id="question">
+			<div class="z-ftLt testCon">
+
+				<script id="testCon" type="text/html">
+					<div class="z-card">
+						<p class="z-question">${questions_title}</p>
+						<ul class="z-select">
+							{{each questions_option}}
+                            {{if questions_option.length<2}}
+                            <textarea class="topic" name="${questions_id}" id="" value="" onmousedown="s(event,this)"></textarea>
+                            {{else}}
+							<li>
+								<input type="radio" name="${questions_id}" value="${$value.trim().slice(0,1)}" sid="1">
+                                <label style="font-size:15px;">${$value}</label>
+							</li>
+                            {{/if}}
+							{{/each}}
+						</ul>
+					</div>
+				</script>
+			</div>
+		</form>
+	</div>
+	<!--提交成功-->
+	<div id="z-shade" style="">
+		<div class="z-submit">
+			<img src=" img/3.jpg" alt="" />
+		</div>
+	</div>
+
+</div>
+<!-- 内容部分结束 -->
+<script type="text/javascript" src=" js/data.js"></script>
+<script type="text/javascript" src=" js/question.js"></script>
+<script>
+    function s(e, a) {
+        if (e && e.preventDefault) {
+            e.preventDefault();
+        } else {
+            window.event.returnValue = false;
+        }
+        a.focus();
+    }
+    function custom_close(){
+        if
+        (confirm("您确定要退出答题吗？")){
+            window.opener=null;
+            window.open('','_self');
+            window.close();
+        }
+        else{}
+    }
+	var sid = sessionStorage.getItem("sid");
+	var courseid = sessionStorage.getItem("courseid");
+	var uid = sessionStorage.getItem("uid");
+	var ques = null;
+	//获取题库
+	$.ajax({
+		type: 'get',
+		url: 'http://admin.zhihuihuo.com.cn/api.php/QuestionsList',
+		data: {
+			exampaperid: sid,
+			courseid: courseid
+		},
+		dataType: 'JSON',
+		async:true,
+		success: function(data) {
+		    console.log(data)
+			if(!uid) {
+				alert("您还没登陆!");
+			} else {
+				$("#testTitile").tmpl(data.data).appendTo(".testTitile");
+
+				for(var i = 0; i < data.data.exampaper_questionid.length; i++) {
+					$("#testCon").tmpl(data.data.exampaper_questionid[i]).appendTo(".testCon");
+				}
+			}
+			//答案验证
+			ques = data;
+            $('.z-answer').click(function() {
+                var d = {};
+                var t = $('#question').serializeArray();
+                var s = JSON.parse(JSON.stringify(t));
+                var allLen = ques.data.exampaper_questionid.length;
+                var userLen = t.length;
+                var datas = {};
+                if(!uid) {
+                    alert("您还没登陆!");
+                    return false;
+                }
+                else if(allLen!==userLen){
+                    alert("还有"+(allLen-userLen)+"个题没做");
+                    return false;
+                }
+                else if(allLen == userLen) {
+
+                    $.each(s, function(index, elem) {
+                        var ww = this.value.trim().slice(0, 1);
+                        var cc = ques.data.exampaper_questionid[index].questions_answertrue;
+                        if(ww != cc) {
+                            var figure = index + 1;
+                            console.log("第" + figure + "题有错误");
+                            var ob = {
+                                "A": 0,
+                                "B": 1,
+                                "C": 2,
+                                "D": 3
+                            }
+                            $(".z-select").eq(index).children().eq(ob[cc]).css("color", "red").append("<span>正确答案</span>")
+                        }
+                        datas[elem.name]=elem.value;
+                    });
+                    debugger;
+                    $.ajax({
+                        type: "POST",
+                        url: "http://admin.zhihuihuo.com.cn/api.php/VerifyAnswer",
+                        data: {
+                            uid: uid,
+                            exampaperid: sid,
+                            answer: datas
+                        },
+                        dataType: 'JSON',
+                        async: true,
+                        success: function(data) {
+                            console.log(data);
+                        }
+                    });
+                    $('.z-submit').show();
+                    $("#z-shade").show();
+                    center();
+                }
+            });
+		}
+	});
+	//选择按钮
+	$(document).ready(function() {
+		$('.z-select li input').iCheck({
+			checkboxClass: 'icheckbox_flat-blue',
+			radioClass: 'iradio_flat-blue'
+		});
+	});
+	//题库倒计时
+	var oCountDown = document.getElementById("countdown");
+//	var aInput = oCountDown.getElementsByTagName("input")[0];
+	var subBtn = document.getElementById("z-answer");
+	var timer = null;
+
+//    subBtn.onclick = function() {
+//
+//	};
+
+	function format(a) {
+		return a.toString().replace(/^(\d)$/, '0$1');
+	}
+
+	function updateTime() {
+		var aSpan = oCountDown.getElementsByTagName("span");
+		var oRemain = aSpan[0].innerHTML.replace(/^0/, '') * 60 + parseInt(aSpan[1].innerHTML.replace(/^0/, ''));
+		if(oRemain <= 0) {
+			clearInterval(timer);
+			return;
+		}
+		oRemain--;
+		aSpan[0].innerHTML = format(parseInt(oRemain / 60));
+		oRemain %= 60;
+		aSpan[1].innerHTML = format(parseInt(oRemain));
+	};
+    timer = setInterval(updateTime, 1000), updateTime();
+	$('.z-submit,#z-shade').click(function() {
+		$('.z-submit').hide();
+		$("#z-shade").hide();
+
+	})
+	$(window).resize(function() {
+		center();
+	});
+
+	function center() {
+		var _top = ($(window).height() - $(".z-submit").height()) / 2;
+		var _left = ($(window).width() - $(".z-submit").width()) / 2;
+		$(".z-submit").css({
+			top: _top,
+			left: _left
+		});
+	}
+</script>

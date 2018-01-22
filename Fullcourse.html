@@ -1,0 +1,180 @@
+<title>全部课程</title>
+<div class="wrapper">
+	<div class="c-FC_box">
+		<div class="c-FC_wra">
+			<div class="c-FC_left left">
+				<div class="c-FC_ulBox">
+					<ul class="c-FC_ul c-FC_uls">
+						<script id="c-FC_uls" type="text/html">
+                            <!--<li class="ListA">
+                                <a href="javascript:void(0);" schoolid='${id}'>
+                                    <h2>${name}
+                                    <span>
+                                        <i class="icon iconfont icon-xiangyou-copy" style="font-size:16px;"></i>
+                                    </span>
+                                </h2>
+                                </a>
+                                <div class="aa" style="display: none;">
+                                    <ul>
+                                        {{each child}}
+                                        <li class="LiA ListB">
+                                            <a class="ListB_a" href="javascript:void(0);">${$value.college_name}</a>
+                                            <i class="c-FC_figure right">${$value.num}</i>
+                                            <div class="aaa" style="display: none;">
+                                                <ul>
+                                                    {{each child}}
+                                                    <li class="LiAs" major-id="${major_id}">
+                                                        ${$value.major_name}
+                                                    </li>
+                                                    {{/each}}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            </li>-->
+                            <li class="ListA">
+                                <a href="javascript:;" class="hvr-wobble-vertical">
+                                    <span>${college_name}</span>
+                                    <span class="sj"><img src=" img/down.png"/></span>
+                                </a>
+
+                                <ul class="UlB">
+                                    {{if child}}
+                                    {{each child}}
+                                    <li class="ListB hvr-bounce-to-right" major-id="${major_id}">
+                                        <a href="javascript:;">
+                                            <span>${$value.major_name}</span>
+                                        </a>
+                                    </li>
+                                    {{/each}}
+                                    {{/if}}
+                                </ul>
+                            </li>
+						</script>
+					</ul>
+				</div>
+			</div>
+			<div class="c-FC_right right">
+				<div class="c-FC_ulBox">
+					<ul class="c-FC_ulvedio c-FC_ul courseList">
+						<script id="courseList" type="text/html">
+							<li course-id="${course_id}">
+                                <input type="hidden" name="course_credit" id="course_credit" value="${course_credit}"/>
+								<a href="#outline">
+									<div class="c-FC-vedio_Box left">
+										<img src="http://admin.zhihuihuo.com.cn/${course_cover}" />
+										<div class="c-FC_biaoqian">
+											<h5>${course_create_teacher_id}</h5>
+										</div>
+									</div>
+									<div class="c-FC-vedio_t left">
+                                        <h2 id="course_name">${course_name}</h2>
+										<p>${course_description}</p>
+									</div>
+								</a>
+							</li>
+						</script>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var fCw = $('.c-FC_box').width();
+	var cFcLeftw = fCw * 0.3 - 50;
+    var cFcRight = fCw * 0.7 - 50;
+	$(".c-FC_left").width(cFcLeftw);
+	$(".c-FC_right").width(cFcRight);
+
+    //	$('.ListA').live('click', function() {
+    //		$(this).siblings().find('.aa').hide('slow');
+    //		$(this).find('.aa').show(450);
+    //		return false;
+    //	});
+    //	$(".ListB").live('click', function() {
+    //		$(this).siblings().find('.aaa').hide('slow');
+    //		$(this).find('.aaa').show(450);
+    //		return false;
+    //	});
+    //	$(".LiAs").live('click',function(){
+    //		$(this).addClass('LiAsAvtive').siblings().removeClass('LiAsAvtive')
+    //	});
+    $(".ListA").live('click', function () {
+        $(this).siblings().find('.UlB').hide('slow');
+        $(this).find('.UlB').show('slow');
+	});
+
+</script>
+<script type="text/javascript">
+	//获取预载动画
+    var loadHTMLAjax = loadHTML();
+	//获取学院名称列表
+	$.ajax({
+		type: "get",
+        url: "http://admin.zhihuihuo.com.cn/api.php/Public/MajorMenu",
+		dataType: 'JSON',
+		beforeSend:function(){
+            $("body").append(loadHTMLAjax)
+		},
+		success: function(data) {
+            for (i in data.data) {
+                //渲染学院列表
+				$("#c-FC_uls").tmpl(data.data[i]).appendTo(".c-FC_uls");
+			}
+		},
+		complete:function(){
+            loadHTMLAjax.remove()
+		}
+	});
+	//获取课程名称列表
+	$.ajax({
+		type: "get",
+		url: "http://admin.zhihuihuo.com.cn/api.php/CourseList",
+		dataType: 'JSON',
+        beforeSend:function(){
+            $("body").append(loadHTMLAjax);
+        },
+		success: function(data) {
+			for(var i = 0; i < data.data.length; i++) {
+                //渲染课程列表
+				$("#courseList").tmpl(data.data[i]).appendTo(".courseList");
+			}
+		},
+        complete:function(){
+            loadHTMLAjax.remove();
+        }
+	});
+	//获取课程内容列表
+    $(".ListB").live('click', function () {
+        var s = $(this).attr("major-id");
+		console.log(s);
+		$.ajax({
+			type: "get",
+			url: "http://admin.zhihuihuo.com.cn/api.php/CourseList",
+            data: {
+                majorid: s
+			},
+			dataType: 'JSON',
+			success: function(data) {
+				$(".courseList>li").remove();
+                for (var i = 0; i < data.data.length; i++) {
+					$("#courseList").tmpl(data.data[i]).appendTo(".courseList");
+				}
+			}
+		});
+	});
+    //session记录已选中课程
+    $(".courseList li").live('click', function () {
+		var cid = $(this).attr("course-id");
+        var course_name = $(this).find("#course_name").text();
+        var course_cover = $(this).find("img").attr("src");
+        var course_credit = $(this).find("input[type='hidden']").val();
+        sessionStorage.setItem("cid", cid);
+        sessionStorage.setItem("cicourse_name", course_name);
+        sessionStorage.setItem("course_cover", course_cover);
+        sessionStorage.setItem("course_credit", course_credit);
+	});
+</script>

@@ -1,0 +1,49 @@
+<title>意见反馈</title>
+<div class="opinionWra">
+	<h3>意见反馈</h3>
+	<textarea class="opinionText" onmousedown="s(event,this)">
+											
+	</textarea>
+	<button class="opinionBtn blue">提交意见</button>
+</div>
+<div class="aFun">
+	<script id="aFun" type="text/html">
+	<div class="aFunBox">
+		<h2>${message}</h2>
+	</div>
+	</script>
+</div>
+<script>
+	function s(e, a) {
+		if(e && e.preventDefault) {
+			e.preventDefault();
+		} else {
+			window.event.returnValue = false;
+		}
+		a.focus();
+	}
+</script>
+<script>
+	function aFun(){
+		$(".aFun").show();
+		var timer = setInterval(function(){
+			$(".aFun").hide()
+		},3000);
+	};
+	$('.opinionBtn').click(function(){		
+		var uid = sessionStorage.getItem("uid");
+		$.ajax({
+			type:"POST",
+			url:"http://admin.zhihuihuo.com.cn/api.php/FeedBack",
+			dataType:'JSON',
+			data:{
+				uid:uid,
+				content:$('.opinionText').val()
+			},
+			success:function(data){
+				aFun();
+				$("#aFun").tmpl(data).appendTo(".aFun");
+			}
+		});
+	});
+</script>

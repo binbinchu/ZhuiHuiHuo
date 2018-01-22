@@ -1,0 +1,115 @@
+<title>交通学院首页</title>
+<div class="c-wrapper">
+	<!--slider STAR-->
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<script type="text/html" id="index_banner">
+				<div class="swiper-slide">
+					<div class="slide_btn">
+						<a href="#" id="${slide_id}">${slide_description}</a>
+					</div>
+					<img src="http://admin.zhihuihuo.com.cn/${slide_src}" style="width:100%;height:100%;" />
+				</div>
+			</script>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<!--slider END-->
+
+	<!--indexContainer STAR-->
+	<div style="width: 100%;overflow: hidden;background: white;">
+		<div class="c-index_container">
+			<div class="c-index_containerT">
+                <h4 id="c-index_containerT">推荐课程</h4>
+				<p id="c-index_containerTen">Courses</p>
+                <span class="border"></span>
+			</div>
+			<div class="c-index_containerList">
+				<script id="c-index_containerList" type="text/html">
+                    <div class="c-index_syllabus" cid="${course_id}">
+                        <a href="#outline" course-id="${course_id}" id="c-index-ListA">
+							<div class="c-index_syllabusC">
+								<div class='c-img_box'>
+									<div class="c-play"><i class="icon iconfont icon-bofang" style="font-size:60px;color:white;"></i></div>
+									<img src="http://admin.zhihuihuo.com.cn/${course_cover}" />
+								</div>
+								<div class="c-index_syllabusC_t">
+									<h4>${course_name}</h4>
+                                    <p>授课老师:${createusername}</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</script>
+			</div>
+		</div>
+	</div>
+	<!--indexContainer END-->
+</div>
+<script type="text/javascript">
+    $(".c-index_syllabus").live('click', function () {
+        var cid = $(this).attr('cid');
+        var course_cover = $(this).find('img').attr('src');
+        sessionStorage.setItem('course_cover', course_cover);
+        sessionStorage.setItem('cid', cid);
+    });
+</script>
+<script type="text/javascript">
+    //获取预载动画
+    var loadHTMLAjax = loadHTML();
+    //渲染轮播图
+    $.ajax({
+        type: "get",
+        url: 'http://admin.zhihuihuo.com.cn/api.php/SlideList',
+        dataType: 'JSON',
+		beforeSend:function(){
+            $("body").append(loadHTMLAjax);
+		},
+        success: function (data) {
+//			console.log(data);
+
+            for (var i = 0; i < data.data.length; i++) {
+                $('#index_banner').tmpl(data.data[i]).appendTo(".swiper-wrapper");
+            }
+            var mySwiper = new Swiper('.swiper-container', {
+                autoplay: 3000, //可选选项，自动滑动
+                preventClicks: false, //默认true Click
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                effect: 'fade',
+                fade: {
+                    crossFade: false,
+                }
+            });
+        },
+		complete:function(){
+            loadHTMLAjax.remove();
+		}
+    });
+    //渲染首页推荐课程
+    $.ajax({
+        type: "get",
+        url: "http://admin.zhihuihuo.com.cn/api.php/CourseRecommendList",
+        dataType: 'JSON',
+        data: {
+            course: 'all'
+        },
+        success: function (data) {
+//			console.log(data);
+            for (var i = 0; i < data.data.length; i++) {
+                $("#c-index_containerList").tmpl(data.data[i]).appendTo(".c-index_containerList");
+                //index.html列表宽度；
+                var cIndexCLW = $('.c-index_containerList').width() - 90
+                var cIndexSW = cIndexCLW / 3;
+                $('.c-index_syllabus').width(cIndexSW - 5);
+            }
+        }
+    });
+
+    $(".c-index_syllabus").live('click', function () {
+        var cicourse_name = $(this).find('h4').text();
+        var cid = $(this).find("a").attr('course-id');
+        sessionStorage.setItem("cid", cid);
+        sessionStorage.setItem("cicourse_name", cicourse_name);
+    });
+</script>

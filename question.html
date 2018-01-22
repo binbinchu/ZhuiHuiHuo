@@ -1,0 +1,210 @@
+<link rel="stylesheet" href=" zcy-style.css/public.css" />
+<link rel="stylesheet" href=" zcy-style.css/question.css" />
+<link rel="stylesheet" href=" font/iconfont.css" />
+<link href=" zcy-style.css/selectpick.css" rel="stylesheet" />
+<script src=" js/src/selectpick.js"></script>
+<title></title>
+<!-- 内容部分开始 -->
+<div style="height:700px;width: 100%; text-align: center;padding-top:10px;display: none;" class="Login_question">
+    <p>此模块需要用户登录才能查看</p>
+</div>
+<div id="z-main">
+    <div class="questionSreach">
+        <div class="selectBox">
+            <select class="sel schoolList">
+                <option>请选择学校</option>
+                <script id="schoolList" type="text/html">
+                    <option school="${id}">${name}</option>
+                </script>
+			</select>
+            <select class="sel collegeList">
+                <option>请选择学院</option>
+                <script id="collegeList" type="text/html">
+                    <option college="${id}">${name}</option>
+                </script>
+                <script id="collegeListNaN" type="text/html">
+                    <option college="${id}">${message}</option>
+                </script>
+			</select>
+            <select class="sel professionalList">
+                <option>请选择专业</option>
+                <script id="professionalList" type="text/html">
+                    <option professional="${id}">${name}</option>
+                </script>
+                <script id="professionalListNaN" type="text/html">
+                    <option professional="${id}">${message}</option>
+                </script>
+			</select>
+            <select class="sel courseList">
+                <option>请选择课程</option>
+                <script id="courseList" type="text/html">
+                    <option course="${id}">${name}</option>
+                </script>
+                <script id="courseListNaN" type="text/html">
+                    <option course="${id}">${message}</option>
+                </script>
+			</select>
+            <a href="javascript:;" class="questionBtn">搜索题库</a>
+        </div>
+    </div>
+	<div class="z-Ft ti">
+		<script id="ti" type="text/html">
+			<div class="z-questions">
+				<div class="z-ftRt z-fl">
+                    {{if !exampaper_img}}
+                    <img src=" img/crouseAdmin.png" alt=""/>
+                    {{else}}
+                    <img src="http://admin.zhihuihuo.com.cn/${exampaper_img}" alt=""/>
+                    {{/if}}
+				</div>
+				<div class="z-ftLt z-fl">
+					<h4>${exampaper_name}</h4>
+					<p>${exampaper_description}</p>
+					<p>
+                        <a style="color:white" href="#testpaper" class="beginA" target="_blank" sid="${exampaper_id}"
+                           courseid="${exampaper_courseid}">
+							开始做题
+						</a>
+					</p>
+				</div>
+			</div>
+		</script>
+	</div>
+</div>
+<script src="js/question.js"></script>
+<script type="text/javascript">
+	var uid = sessionStorage.getItem("uid");
+	console.log(uid)
+    if(!uid){
+        $(".Login_question").show();
+        $("#z-main").hide();
+    }
+	$.ajax({
+		type: 'get', //提交的方式
+		url: 'http://admin.zhihuihuo.com.cn/api.php/ExampaperList', //请求地址
+		data: {
+			uid: uid
+		},
+		dataType: 'JSON',
+		success: function(data) {
+			console.log(data);
+			if(uid) {
+				for(i in data.data) {
+					$("#ti").tmpl(data.data[i]).appendTo(".ti");
+				}
+			} else {
+				alert("您还没有登录!");
+			}
+		}
+    });
+    //学校列表
+    $.ajax({
+        type: "get",
+        url: "http://admin.zhihuihuo.com.cn/api.php/SchoolList",
+        dataType: 'JSON',
+        success: function (data) {
+            for (i in data.data) {
+                $("#schoolList").tmpl(data.data[i]).appendTo(".schoolList")
+            }
+        }
+    });
+    //获取学院列表
+    $('.schoolList').live('click', function () {
+        var schoolID = $(this).find("option:selected").attr("school");
+        $.ajax({
+            type: "post",
+            url: "http://admin.zhihuihuo.com.cn/api.php/CascadingSelect",
+            dataType: 'JSON',
+            data: {
+                cascadeid: schoolID,
+                cascadetype: 'college'
+            },
+            success: function (data) {
+                $(".collegeList option").remove();
+                if (data.state == 0) {
+                    $("#collegeListNaN").tmpl(data).appendTo(".collegeList");
+                } else {
+                    for (i in data.data) {
+                        $("#collegeList").tmpl(data.data[i]).appendTo(".collegeList");
+                    }
+
+                }
+            }
+        });
+    });
+    //获取专业列表
+    $(".collegeList").live('click', function () {
+        var collegeID = $(this).find("option:selected").attr("college");
+        $.ajax({
+            type: "post",
+            url: "http://admin.zhihuihuo.com.cn/api.php/CascadingSelect",
+            dataType: 'JSON',
+            data: {
+                cascadeid: collegeID,
+                cascadetype: 'major'
+            },
+            success: function (data) {
+
+                $(".professionalList option").remove();
+                if (data.state == 0) {
+                    $("#professionalListNaN").tmpl(data).appendTo(".professionalList");
+                } else {
+                    for (i in data.data) {
+                        $("#professionalList").tmpl(data.data[i]).appendTo(".professionalList");
+                    }
+                }
+            }
+        });
+    });
+    //获取课程列表
+    $(".professionalList").live('click', function () {
+        var professionalID = $(this).find("option:selected").attr("professional");
+        $.ajax({
+            type: "post",
+            url: "http://admin.zhihuihuo.com.cn/api.php/CascadingSelect",
+            dataType: 'JSON',
+            data: {
+                cascadeid: professionalID,
+                cascadetype: 'course'
+            },
+            success: function (data) {
+                $(".courseList option").remove();
+                if (data.state == 0) {
+                    $("#courseListNaN").tmpl(data).appendTo(".courseList");
+                } else {
+                    for (i in data.data) {
+                        $("#courseList").tmpl(data.data[i]).appendTo(".courseList");
+                    }
+                }
+            }
+        });
+    });
+    //获取预载动画
+    var loadHTMLAjax = loadHTML();
+    //搜索所选课程的题库
+    $(".questionBtn").die().live("click",function () {
+        var courseID = $(".courseList").find("option:selected").attr("course");
+        $.ajax({
+            type: "get",
+            url: "http://admin.zhihuihuo.com.cn/api.php/ExampaperList",
+            dataType: 'JSON',
+            data: {
+                coursetype: courseID
+            },
+            beforeSend:function(){
+                $("body").append(loadHTMLAjax)
+            },
+            success: function (data) {
+//				console.log(data)
+                $(".ti .z-questions").remove();
+                for (i in data.data) {
+                    $("#ti").tmpl(data.data[i]).appendTo(".ti");
+                }
+            },
+            complete:function(){
+                loadHTMLAjax.remove();
+            }
+        });
+    });
+</script>
+<!-- 内容部分结束 -->

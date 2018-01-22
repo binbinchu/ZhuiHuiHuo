@@ -1,0 +1,14 @@
+<div class="aboutWra">
+	<div class="about_content">
+		
+	</div>
+</div>
+<script>
+	$.ajax({
+		type:"get",
+		url:"http://admin.zhihuihuo.com.cn/api.php/Extend/About",
+		success:function(data){
+			$(".about_content").html(data)
+		}
+	});
+</script>

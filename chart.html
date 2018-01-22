@@ -1,0 +1,330 @@
+<title>
+    交通学院下课聊
+</title>
+<link rel="stylesheet" type="text/css" href=" css/chart_css/iconfont.css"/>
+<div class="wrapper outline-wrapper">
+	<div class="c-chart_wra">
+		<div class="c-chart_wraBox">
+			<div class="c-chart_left left">
+				<div class="c-chart_leftNavUl">
+					<ul class="chartMen">
+						<script id="chartMen" type="text/html">
+                            <li plate-id="${plate_id}" plate-sort="${plate_sort}">
+                                ${plate_name}
+							</li>
+						</script>
+					</ul>
+				</div>
+				<div class="c-chart_ZD_Box">
+                    <script id="c-chart_ZD_Box" type="text/html">
+                        <h3 class="ZD_Box">
+                            <li forum-id="${forum_id}" id="chartLi" style="padding:10px;"><a
+                                    href="#chartCon"><span>置顶</span>${forum_title}</a></li>
+                        </h3>
+                    </script>
+				</div>
+				<div class="c-chart_TZ_Box">
+					<ul class="chartCon">
+						<script id="chartCon" type="text/html">
+							<li forum-id="${forum_id}" id="chartLi">
+                                <a href="#chartCon" class="charList_A" target="_bank">
+                                    <div class="PostAuthor right">
+                                        <ul class="PostAuthor_ul">
+                                            <li class="authorImg left" userid="${forum_publishuserid}">
+                                                {{if user_avatar}}
+                                                <img src="http://admin.zhihuihuo.com.cn/${user_avatar}" id="authorImg"/>
+                                                {{else}}
+                                                <img src=" img/admin.png" id="authorImg"/>
+                                                {{/if}}
+                                            </li>
+                                            <li class="authorName left">${user_name}</li>
+                                            <li class="CreatTime clear">${forum_createtime}</li>
+                                        </ul>
+									</div>
+                                    <div class="chart_con left">
+                                        <div class="PostCon">
+                                            <ul class="PostCon_ul">
+                                                <li class="PostCon_Title"><h3>${forum_title}</h3></li>
+                                                <li class="PostCon_Content">{{html forum_content}}</li>
+                                            </ul>
+										</div>
+                                        <div class="PostImg">
+                                            {{if forum_thumb}}
+                                            {{each forum_thumb}}
+                                            {{if $value}}
+                                            <img src="http://admin.zhihuihuo.com.cn/${$value}" id="PostImg"/>
+                                            {{else}}
+                                            <span></span>
+                                            {{/if}}
+                                            {{/each}}
+                                            {{/if}}
+										</div>
+									</div>
+								</a>
+							</li>
+						</script>
+					</ul>
+                    <div class="page">
+                        <a href="javascript:;" class="prev">上一页</a>
+                        <a href="javascript:;" class="next">下一页</a>
+                    </div>
+				</div>
+				<!--发表帖子 START-->
+                <form id="chartForm" method="post" enctype="multipart/form-data">
+					<div class="c-chart_sendBox">
+						<div class="c-chart_sendT">
+							<input type="text" name="forum_title" id="sendTile" value="" placeholder="请填写标题" />
+							<select class="chartMens" name="plateid">
+								<script id="chartMens" type="text/html">
+									<option plate-sort="${plate_sort}" plate-id="${plate_id}">${plate_name}</option>
+								</script>
+							</select>
+						</div>
+                        <div id="inputBpx">
+                            <div class="c-chart_conSend" contenteditable="true">
+
+                            </div>
+                            <div class="sendContorl">
+                                <button type="button" class="icon iconfont icon-biaoqing" id="emojiBtn"></button>
+                                <i class="icon iconfont icon-tupian addImg" data-picid="0"></i>
+                            </div>
+                        </div>
+                        <div id="tdRoomPicture">
+                            <div class="tdRoomPicture"></div>
+                        </div>
+                    </div>
+				</form>
+                <button id="chart_Send" class="z-outline_send sendPadding">发表</button>
+				<!--发表帖子 END-->
+			</div>
+            <div class="c-chart_right left">
+                <div class="c-char_user">
+                    <div class="c-chart_userImg">
+                        <a href="#user" id="userPer"><img/></a>
+                        <h4><a href="#id" id="chartUser">用户ID</a></h4>
+                        <span id="userLevel"></span>
+                    </div>
+                    <div class="c-chart_userT">
+                        <ul>
+                            <li class="MyForumNum">
+                                <h5><a href="#user" id="userID">我的帖子</a></h5>
+                                <script id="MyForumNum" type="text/html">
+                                    <span>${data}</span>
+                                </script>
+                            </li>
+                            <li>
+                                <h5><a href="#user" id="userReplay">回复我的</a></h5>
+                                <span>1</span>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/img.js"></script>
+
+<script type="text/javascript">
+    $(".c-chart_leftNavUl ul li").live('click', function () {
+		$(this).addClass("c-chart_leftNavUlActive").siblings().removeClass("c-chart_leftNavUlActive");
+	});
+	//表情
+    $("#emojiBtn").click(function () {
+		$(".c-chart_conSend").emoji({
+            button: "#emojiBtn",
+            showTab: false,
+			animation: 'fade',
+			icons: [{
+				name: "贴吧表情",
+				path: " dist/img/tieba/",
+				maxNum: 50,
+				file: ".jpg",
+				placeholder: ":{alias}:",
+			}, {
+				name: "QQ表情",
+				path: " dist/img/qq/",
+				maxNum: 91,
+				excludeNums: [41, 45, 54],
+				file: ".gif",
+				placeholder: "#qq_{alias}#"
+			}]
+        });
+	});
+    $(".authorImg").live('click', function () {
+        var userid = $(this).attr('userid');
+        var authorName = $(this).parent().find(".authorName").text();
+//		console.log(authorName)
+        sessionStorage.setItem('authorName', authorName);
+        sessionStorage.setItem('userid', userid);
+        window.location.hash = "#personal";
+        return false;
+    });
+</script>
+<script>
+    //获取预载动画
+    var loadHTMLAjax = loadHTML();
+	//获取登录后的用户信息
+	var uid = sessionStorage.getItem("uid");
+	var username = sessionStorage.getItem("username");
+	var userimg = sessionStorage.getItem("userimg");
+    var userLevel = sessionStorage.getItem("userLevel");
+	if(username) {
+		$("#chartUser").html(username);
+        $("#userLevel").html(userLevel + "级");
+        if (userimg == '' || !userimg) {
+            $(".c-chart_userImg a img").attr("src", " img/admin.png");
+        } else {
+            $(".c-chart_userImg a img").attr("src", "http://admin.zhihuihuo.com.cn/" + userimg);
+        }
+    } else {
+	    $("#userID").attr("href","javascript:void(0);");
+	    $("#userReplay").attr("href","javascript:void(0);");
+	    $("#userPer").attr("href","javascript:void(0);");
+	    $("#chartUser").attr("href","javascript:void(0);");
+        $("#chartUser").html("您的名字");
+        $("#userLevel").html("0级");
+        $(".c-chart_userImg a img").attr("src", "img/admin.png");
+    }
+    ;
+	//获取帖子类型
+	$.ajax({
+		type: "get",
+		url: "http://admin.zhihuihuo.com.cn/api.php/BBS/PlateList",
+		dataType: 'JSON',
+		success: function(data) {
+			//渲染数据
+			for(var i = 0; i < data.data.length; i++) {
+				$("#chartMen").tmpl(data.data[i]).appendTo(".chartMen");
+				$("#chartMens").tmpl(data.data[i]).appendTo(".chartMens");
+                $(".chartMen li:first").addClass('c-chart_leftNavUlActive');
+			}
+		}
+	});
+	//获取帖子
+    function initPosts(type, page) {
+        $.ajax({
+            type: "get",
+            url: "http://admin.zhihuihuo.com.cn/api.php/BBS/ForumManage",
+            dataType: 'JSON',
+            data: {
+                type: type,
+                page: page
+            },
+            beforeSend:function(){
+                $("body").append(loadHTMLAjax)
+            },
+            success: function (data) {
+                console.log(data)
+                //判断帖子页数
+                if (data.state == 0) {
+                    alert('后面没有了');
+                    $('body').css({
+                        "overflow-x":"hidden",
+                        "overflow-y":"hidden"
+                    });
+                    return false;
+                }
+                for (i in data.data) {
+                    if (data.data[i].forum_top == 1) {
+                        $(".ZD_Box").remove();
+                        $("#c-chart_ZD_Box").tmpl(data.data[i]).appendTo(".c-chart_ZD_Box");
+                    } else if (data.data[i].forum_top == 0) {
+                        $("#chartCon").tmpl(data.data[i]).appendTo(".chartCon");
+                    }
+                    $('.c-chart_right').height($('.c-chart_left').height() + 105);
+                }
+                ;
+								
+			},
+            complete:function(){
+                loadHTMLAjax.remove();
+            }
+        });
+    };
+    initPosts();
+    //帖子分类
+    $(".c-chart_leftNavUl ul li").live('click', function () {
+        var type = $(this).attr('plate-id');
+        sessionStorage.setItem("postsType", type);
+        $(".chartCon #chartLi").remove();
+        initPosts(type);
+    });
+    $(".c-chart_leftNavUl ul li").live('dblclick', function () {
+        return false;
+    });
+    //帖子分页
+    var page = 1;
+    $(".prev").live('click', function () {
+        var type = sessionStorage.getItem("postsType");
+        if (page < 2) {
+            alert("已经是第一页");
+            return false
+        }
+        page -= 1;
+//		console.log(page)
+        $(".chartCon #chartLi").remove();
+        initPosts(type, page);
+        $('html,body').animate({scrollTop: 0}, 1000);
+    });
+    $(".next").live('click', function () {
+        var type = sessionStorage.getItem("postsType");
+        page += 1;
+//		console.log(page)
+        $(".chartCon #chartLi").remove();
+        initPosts(type, page);
+        $('html,body').animate({scrollTop: 0}, 1000);
+    });
+	$("#chartLi").live('click', function() {
+		var forum_id = $(this).attr("forum-id");
+		sessionStorage.setItem("fid", forum_id);
+	});
+
+    //我的帖子的数量
+	function figurePost(){
+        $.ajax({
+            type: "post",
+            url: "http://admin.zhihuihuo.com.cn/api.php/BBS/MyForumNum",
+            data: {
+                uid: uid,
+            },
+            dataType: 'JSON',
+            success: function(data) {
+                $("#MyForumNum").tmpl(data).appendTo(".MyForumNum");
+                if (!uid) {
+                    $("<span>0</span>").appendTo(".MyForumNum");
+                }
+            }
+        });
+    };
+    figurePost();
+    //发表帖子
+    $("#chart_Send").click(function () {
+        if(!uid){
+            alert("您还没登录!");
+            return false;
+        }
+        var plateid = $(".chartMens").find("option:selected").attr("plate-id");
+        var forum_title = $("#sendTile").val();
+        var forum_content = $(".c-chart_conSend").html();
+        $("#chartForm").ajaxSubmit({
+            url: 'http://admin.zhihuihuo.com.cn/api.php/BBS/ForumAdd',
+            dataType: 'JSON',
+            data: {
+                forum_title: forum_title,
+                forum_content: forum_content,
+                plateid: plateid,
+                uid: uid
+            },
+            success: function (data) {
+                alert(data.message);
+                $(".chartCon #chartLi").remove();
+                initPosts();
+                $(".MyForumNum span").remove();
+                figurePost();
+                var forum_title = $("#sendTile").val("");
+                var forum_content = $(".c-chart_conSend").html("");
+            }
+		});
+	});
+</script>

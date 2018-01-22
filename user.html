@@ -1,0 +1,483 @@
+<link rel="stylesheet" href=" css/user.css"/>
+<link rel="stylesheet" href=" css/public.css"/>
+<link rel="stylesheet" href=" font2/iconfont.css" />
+<link rel="stylesheet" href=" css/style.css"/>
+<title>个人主页</title>
+<!--内容部分-->
+<div id="z-main">
+	<div class="z-mainHd z-clearfix">
+		<div class="z-mainHL z-fl">
+			<span class="z-mainPic">
+				<img style="border-radius:50%;width:100%;height:100%"/>
+			</span>
+		</div>
+		<div class="z-mainHR z-fl">
+			<div class="z-mainMsghd">
+                <div class="userEditor"><i class="iconfont icon-weibiaoti104"></i>编辑资料</div>
+			</div>
+			<div class="z-mainMsgft">
+				<div id="chartUser">用户ID</div>
+                <div id="userLevel"></div>
+			</div>
+		</div>
+	</div>
+    <div class="z-mainFt z-clearfix student">
+		<ul class="z-course z-fl">
+			<li class="z-topic-list">我的课程</li>
+			<li class="z-topic-list">我的下课聊</li>
+			<li class="z-topic-list">我的题库</li>
+			<li class="z-topic-list">我的成绩</li>
+			<div class="z-border"></div>
+		</ul>
+		<div class="z-content z-fl">
+			<!--我的课程开始-->
+			<div class="z-mainMc z-topic-listItem">
+				<div class="z-MD z-mcTop">
+					<h4>正在进行</h4>
+                    <ul class="user_Ul1">
+                        <script id="userCourse1" type="text/html">
+                            <li class="user_Li">
+                                <a href="#video">
+                                    <img class="z-pic" src="http://admin.zhihuihuo.com.cn/${course_cover}"
+                                         alt="${course_description}"/>
+                                    <div class="z-txt">
+                                        <a href="">${course_name}</a>
+                                    </div>
+                                </a>
+                            </li>
+                        </script>
+					</ul>
+				</div>
+				<div class="z-MD z-mcMid">
+					<h4>已经结束</h4>
+                    <ul class="user_Ul2">
+                        <script id="userCourse2" type="text/html">
+                            <li class="user_Li">
+                                <a href="#video">
+                                    <img class="z-pic" src="http://admin.zhihuihuo.com.cn/${course_cover}"
+                                         alt="${course_description}"/>
+                                    <div class="z-txt">
+                                        <a href="">${course_name}</a>
+                                    </div>
+                                </a>
+                            </li>
+                        </script>
+					</ul>
+				</div>
+
+				<div class="z-MD z-mcBot">
+					<h4>尚未开始</h4>
+                    <ul class="z-clearfix user_Ul3">
+                        <script id="userCourse3" type="text/html">
+                            <li class="user_Li">
+                                <a href="#video">
+                                    <img class="z-pic" src="http://admin.zhihuihuo.com.cn/${course_cover}"
+                                         alt="${course_description}"/>
+                                    <div class="z-txt">
+                                        <a href="">${course_name}</a>
+                                    </div>
+                                </a>
+                            </li>
+                        </script>
+					</ul>
+				</div>
+			</div>
+			<!--我的课程结束-->
+
+			<!--我的下课聊-我的帖子部分开始-->
+			<div class="z-mainMp z-topic-listItem z-clearfix">
+				<ul class="z-posts z-clearfix">
+					<li class="z-card z-fl" link-href="">
+                        <a>我的帖子</a>
+					</li>
+					<li class="z-card z-fl">
+                        <a>回复我的</a>
+					</li>
+					<div class="z-smallBar"></div>
+				</ul>
+				<div class="z-details z-sue z-show z-clearfix MyForum">
+					<script id="MyForum" type="text/html">
+                        <div style="font-size:15px;" class="getMyPost">
+							<span class="z-fl userChart_Li" forum-id="${forum_id}">
+								在
+								<a href="#chartCon">${forum_plateid}板块</a>
+								发帖 
+								<a href="#chartCon">${forum_title}</a>
+							</span>
+                            <span class="z-fr delet">
+								<a href="javascript:;" forum-id="${forum_id}">删除</a>
+							</span>
+                            <span class="z-fr" style="margin-right:50px;">${forum_createtime}</span>
+                        </div>
+                    </script>
+                    <script id="message" type="text/html">
+                        <span style="padding-left:50px;">${message}</span>
+                    </script>
+				</div>
+                <div class="z-details z-back">
+                    <script id="z-details" type="text/html">
+					<div class="z-backList z-clearfix">
+						<div class="z-left z-fl">
+							<div class="z-list-hd">
+								<span>${user.user_name}&nbsp;:&nbsp;</span>
+								<span>${forumcomment_content}</span>
+							</div>
+							<div class="z-list-ft">
+								<span>回复了我的话题 :"</span>
+								<span>${forum.forum_title}</span>
+								<span>" ＞</span>
+								<span>${forum.plate_name}</span>
+							</div>
+						</div>
+						<div class="z-right z-fr">
+							<div class="z-list-hd">
+								<span>${forumcomment_createtime}</span>
+                                <span>${forumcomment_floor}楼</span>
+							</div>
+							<div class="z-list-ft z-fr" fid="${forum.forum_id}">
+								<span><a href="#chartCon">回复</a></span>
+							</div>
+						</div>
+					</div>
+                    </script>
+                    <script id="z-details_message" type="text/html">
+                        <div class="z-backList z-clearfix">
+                            <div class="z-left z-fl">
+                                <div class="z-list-ft">
+                                    <span>${message}</span>
+							</div>
+                            </div>
+                        </div>
+                    </script>
+				</div>
+			</div>
+			<!--我的下课聊-我的帖子结束-->
+
+			<!--我的题库开始-->
+			<div class="z-mainMr z-topic-listItem z-cleatfix">
+				<div class="z-topic">
+					<table class="Mytopic">
+						<tr>
+							<th>试题名</th>
+							<th>成绩</th>
+							<th>错题数</th>
+							<th>交题时间</th>
+						</tr>
+						<script id="Mytopic" type="text/html">
+                            <tr>
+                                <td>${exampaper_name}</td>
+                                <td>${studentscore_score}</td>
+                                <td>${error_num}</td>
+                                <td>${examanswer_lasttime}</td>
+                            </tr>
+                        </script>
+					</table>
+				</div>
+                <!--<div class="z-pagination">
+                    <ul>
+                        <li><span class="z-pre">上一页</span></li>
+                        <li class="z-list">
+                            <span>1</span>
+                            <span>2</span>
+                        </li>
+                        <li><span class="z-next">下一页</span></li>
+                    </ul>
+                </div>-->
+			</div>
+			<!--我的题库结束-->
+
+			<!--我的成绩开始-->
+			<div class="z-grade z-topic-listItem">
+				<div id="z-ONE">
+					<h4>大二第一学期</h4>
+                    <ul class="z-clearfix results">
+                        <script id="results" type="text/html">
+                            <li>
+                                <img class="z-pic" src="http://admin.zhihuihuo.com.cn/${course_cover}" alt=""/>
+                                <div class="z-txt">
+                                    <div class="z-txtHd">
+                                        <h3 style="margin-left:10px;">${course_name} </h3>
+                                        {{if course_score&&course_score.length!=0}}
+                                        {{each course_score}}
+                                        <div class="z-result">
+                                            <p class="z-sole">
+                                                <span>测试成绩</span>&nbsp;&nbsp;:&nbsp;&nbsp;
+                                                <span>${$value.examscore}</span>
+                                            </p>
+                                            <p>
+                                                <span>平时成绩</span>&nbsp;&nbsp;:&nbsp;&nbsp;
+                                                <span>${$value.peacetimescore}</span>
+                                            </p>
+                                            <p>
+                                                <span>考试成绩</span>&nbsp;&nbsp;:&nbsp;&nbsp;
+                                                <span>${$value.testscore}</span>
+                                            </p>
+                                            <p>
+                                                <span>总成绩</span>&nbsp;&nbsp;:&nbsp;&nbsp;
+                                                <span>${$value.totalscore_num}</span>
+                                            </p>
+                                            <div class="z-cancel ">
+                                                <div>×</div>
+                                            </div>
+                                        </div>
+                                        <div class="z-in"></div>
+                                        {{/each}}
+                                        {{else}}
+                                        <div class="z-result">
+                                            <p class="z-sole">
+                                                <span>测试成绩</span>&nbsp;&nbsp;:&nbsp;&nbsp;
+                                                <span style="font-size:16px;">本课程暂无您的成绩!</span>
+                                            </p>
+                                            <div class="z-cancel ">
+                                                <div>×</div>
+                                            </div>
+                                        </div>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </li>
+                        </script>
+					</ul>
+				</div>
+            </div>
+            <!--我的成绩结束-->
+        </div>
+    </div>
+</div>
+<div class="userEditorWra">
+    <div class="userEditorBox">
+        <span id="close">X</span>
+        <form id="userEditorFormImg">
+            <div class="container">
+                <div class="imageBox">
+                    <div class="thumbBox"></div>
+                    <div class="spinner" style="display: none"></div>
+                </div>
+                <div class="input-group">
+                    <label>
+                        您的新昵称:
+                        <input type="text" name="newusername" id="newusername" class="mytxt" maxlength="4"/>
+                    </label>
+                </div>
+                <div class="action">
+                    <div class="new-contentarea tc">
+                        <a href="javascript:void(0)" class="upload-img">
+                            <label for="upload-file">请先选择图片...</label>
+                        </a>
+                        <input type="file" class="" name="upload-file" id="upload-file"/>
+                    </div>
+                    <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+">
+                    <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-">
+                    <input type="button" class="Btnsty_peyton" id="userImg" value="上传">
+                </div>
+            </div>
+        </form>
+        <form id="userEditorFormPassword">
+            <div class="input-group">
+                <label>
+                    您的原密码:
+                    <input type="password" name="oldPassword" id="oldPassword" value="" class="mytxt"/>
+                </label>
+                <label>
+                    您的新密码:
+                    <input type="password" name="newPassword" id="newPassword" value="" class="mytxt"/>
+                </label>
+                <label>
+                    重复新密码:
+                    <input type="password" name="reNewPassword" id="reNewPassword" value="" class="mytxt"/>
+                </label>
+            </div>
+            <div class="passwordSend">
+                <input type="button" class="Btnsty_peyton" id="userPassword" value="确认">
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="js/user_js/user_js.js"></script>
+<script type="text/javascript" src="js/userEditor.js"></script>
+<script>
+	//获取我的帖子
+	var uid = sessionStorage.getItem("uid");
+    var username = sessionStorage.getItem("username");
+    $("#newusername").attr('value', username);
+	function getMyPost(){
+        $.ajax({
+            type: "get",
+            url: "http://admin.zhihuihuo.com.cn/api.php/BBS/MyForum",
+            data: {
+                uid: uid
+            },
+            dataType: 'JSON',
+            success: function (data) {
+                if (data.state == 0) {
+                    $("#message").tmpl({
+                        "message": '您还没发帖子!'
+                    }).appendTo(".MyForum");
+                }
+                for (i in data.data) {
+                    $("#MyForum").tmpl(data.data[i]).appendTo(".MyForum");
+                }
+            }
+        });
+    };
+    getMyPost();
+	//我的题库
+	$.ajax({
+        type: "post",
+        url: "http://admin.zhihuihuo.com.cn/api.php/MyExampaper",
+        data: {
+            uid: uid
+		},
+        dataType: 'JSON',
+        success: function (data) {
+            console.log(data)
+            for (i in data.data) {
+                $("#Mytopic").tmpl(data.data[i]).appendTo(".Mytopic");
+            }
+        }
+    });
+    Date.prototype.format = function (fmt) {
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            }
+        }
+        return fmt;
+    }
+    var dates = new Date().format("yyyy-MM-dd hh:mm:ss");
+    var newDates = dates.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g, "");
+    //	console.log(newDates)
+    //我的课程
+    //	console.log(uid);
+    $.ajax({
+        type: "post",
+        url: "http://admin.zhihuihuo.com.cn/api.php/MyCourse",
+        dataType: 'JSON',
+        data: {
+            uid: uid
+        },
+        success: function (data) {
+            for (i in data.data) {
+                var starDate = data.data[i].course_createtime;
+                var endDate = data.data[i].course_endtime;
+                var newStarDate = starDate.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g, "");
+                var newEndDate = endDate.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g, "");
+                var EDate = newEndDate - newDates;
+                var FDate = newStarDate - newDates;
+                if (EDate > 0 || newEndDate == 0 && FDate < 0) {
+                    //console.log(data.data[i]);
+                    $("#userCourse1").tmpl(data.data[i]).appendTo(".user_Ul1")
+                } else {
+                    //console.log(data.data[i]);
+                    $("#userCourse2").tmpl(data.data[i]).appendTo(".user_Ul2")
+                }
+			}
+		}
+    });
+    //删除帖子
+    $(".delet a").live('click', function () {
+        var forumid = $(this).attr("forum-id");
+//		console.log(forumid)
+        $.ajax({
+            type: "get",
+            url: "http://admin.zhihuihuo.com.cn/api.php/BBS/ForumDelete",
+            dataType: 'JSON',
+            data: {
+                forumid: forumid
+            },
+            success: function (data) {
+                alert(data.message);
+                $(".getMyPost").remove();
+                getMyPost();
+//                window.location.reload();
+            }
+        });
+    });
+    //我的成绩
+    $.ajax({
+        type: "post",
+        url: "http://admin.zhihuihuo.com.cn/api.php/MyScore",
+        dataType: 'JSON',
+        data: {
+            uid: uid
+        },
+        success: function (data) {
+            $("#results").tmpl(data.data).appendTo(".results");
+        }
+    });
+    //回复我的
+    $.ajax({
+        type: "post",
+        url: "http://admin.zhihuihuo.com.cn/api.php/Myremind",
+        dataType: 'JSON',
+        data: {
+            uid: uid
+        },
+        success: function (data) {
+            if (data.state == 0) {
+                $("#z-details_message").tmpl(data).appendTo(".z-back");
+            } else if (data.state == 1) {
+                $("#z-details").tmpl(data.data).appendTo(".z-back");
+
+            }
+        }
+    });
+
+    //头像/名称/修改
+    $("#userImg").click(function () {
+        var newusername = $("#newusername").val();
+        var password = sessionStorage.getItem("password");
+        var admin = sessionStorage.getItem("admin");
+        $('#userEditorFormImg').ajaxSubmit({
+            type: "post",
+            url: "http://admin.zhihuihuo.com.cn/api.php/EditUser",
+            dataType: 'JSON',
+            data: {
+                uid: uid,
+                username: newusername
+            },
+            success: function (data) {
+                alert(data.message);
+                StudentLogin(admin, password);
+            }
+        });
+
+    });
+    //密码修改
+    $("#userPassword").click(function () {
+        var password = $("#oldPassword").val();
+        var new_password = $("#newPassword").val();
+        var repeat_password = $("#reNewPassword").val();
+//		return false;
+        $("#userEditorFormPassword").ajaxSubmit({
+            url: 'http://admin.zhihuihuo.com.cn/api.php/EditPass',
+            dataType: 'JSON',
+            data: {
+                uid: uid,
+                password: password,
+                new_password: new_password,
+                repeat_password: repeat_password
+            },
+            success: function (data) {
+                alert(data.message);
+            }
+        });
+    });
+    //回复跳转
+    $(".z-list-ft").die().live("click",function(){
+        var fid = $(this).attr("fid");
+        sessionStorage.setItem("fid",fid);
+    });
+</script>

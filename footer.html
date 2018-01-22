@@ -1,0 +1,44 @@
+<div class="footerWra">
+	<div class="footer_content">
+		<div class="left footer_contorl">
+			<ul>
+				<li class="about" onclick="footerLink()" link-id="about"><a href="javascript:;">关于我们</a></li>
+				<li><a href="javascript:;">联系我们</a></li>
+				<li class="opinion" onclick="footerLink()" link-id="opinion"><a>意见反馈</a></li>
+				<li class="law" onclick="footerLink()" link-id="law"><a href="javascript:;">法律支持</a></li>
+				<li class="down" onclick="footerLink()" link-id="down"><a>移动app下载</a></li>
+			</ul>
+		</div>
+		<div class="right footer_tabs"></div>
+	</div>
+</div>
+<script>
+	var clickUrl = sessionStorage.getItem('footerUrl');
+	load(clickUrl);
+	addActive(clickUrl);
+	footerLink();	
+	function addActive(className){
+		$("."+className).addClass("footer_contorlLiAct");
+	};
+	function footerLink(){
+		$(".footer_contorl li").click(function(){
+			var footerUrl = $(this).attr('link-id');
+			$(this).addClass("footer_contorlLiAct").siblings().removeClass("footer_contorlLiAct");
+			if($(".footer_contorl li").hasClass("footer_contorlLiAct")){
+				var state = $(this).attr("link-id");
+				history.pushState(null,null,"#"+state);
+			}
+			load(footerUrl);
+		});
+	};
+	function load(footerUrl){
+		$.ajax({
+			type:"get",
+			url:footerUrl+".html",	
+			success:function(data){
+				$(".footer_tabs").html(data);
+			}
+		});	
+	};
+	
+</script>

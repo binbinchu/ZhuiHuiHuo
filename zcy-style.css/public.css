@@ -1,0 +1,29 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form,  input, textarea, p, th, td {
+    margin: 0;
+    padding: 0;
+ 
+}
+ol, ul,li{ list-style:none; }
+
+.z-clearfix:after{
+	content:'';
+	height:0px;
+	line-height:0px;
+	clear:both;
+	overflow:hidden;
+	visibility:hidden;
+	display:block;
+}
+.z-fl{
+	float:left;
+}
+.z-fr{
+	float:right;
+}
+a{
+	text-decoration:none;
+}
+body{
+	background:#F7F7F7 ;
+}
+

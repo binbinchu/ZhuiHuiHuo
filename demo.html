@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" ,chrome=1>
+		<meta name="viewport" content="width=device-width, initial-scale=0.1" />
+		<title>智慧火</title>
+		<link rel="stylesheet" href=" css/c-style.css"/>
+		<link rel="stylesheet" href=" css/src/swiper.css" />
+		<link rel="stylesheet" href=" font/iconfont.css" />
+		<link rel="stylesheet" href=" css/src/jquery.mCustomScrollbar.min.css">
+		<link rel="stylesheet" href=" css/src/jquery.emoji.css" />
+		<link rel="stylesheet" href=" zcy-style.css/login.css" />
+		<link rel="stylesheet" href=" css/hover.css"/>
+		<script type="text/javascript" src="js/loadingImg.js"></script>
+		<!--<script type="text/javascript">loadingImg()</script>-->
+		<script type="text/javascript" src=" js/jquery.js"></script>
+		<script type="text/javascript" src=" js/jquery-form.js"></script>
+		<script type="text/javascript" src=" js/src/jquery.mCustomScrollbar.min.js"></script>
+		<script type="text/javascript" src=" js/src/jquery.tmpl.js"></script>
+		<script type="text/javascript" src=" dist/sea.js"></script>
+		<script type="text/javascript" src=" js/script.js"></script>
+		<script type="text/javascript" src=" js/src/zUI.js"></script>
+		<script type="text/javascript" src=" js/src/icheck.js"></script>
+		<script type="text/javascript" src=" js/src/selectpick.js"></script>
+		<script type="text/javascript" src=" js/src/jquery.emoji.js"></script>
+		<script type="text/javascript" src=" js/cropbox.js"></script>
+	</head>
+	<body>
+		<div class="c-head">
+			<div class="c-head-box">
+				<div class="c-head-logo left">
+
+					<span id="c-span-middle"></span>
+					<a href="#">
+						<span class="c-demo_logo">
+						<img src=" img/demologo.png"/>
+					</span>
+					</a>
+					<!--<h4><a href="#">山东交通学院视频学习</a></h4>-->
+				</div>
+				<div class="c-head-nav left">
+					<ul class="c-head-nav_ul">
+						<li link-name="首页">
+							<a href="#index" link-type="link">首页</a>
+						</li>
+						<li link-name="全部课程">
+							<a href="#Fullcourse" link-type="link">全部课程</a>
+						</li>
+						<li link-name="下课聊">
+							<a href="#chart" link-type="link">下课聊</a>
+						</li>
+						<li link-name="实验">
+							<a href="#shiyan" link-type="link">实验</a>
+						</li>
+						<li link-name="题库">
+							<a href="#question" link-type="link">题库</a>
+						</li>
+					</ul>
+				</div>
+				<div class="c-head-contorl right">
+					<div class="c-head-contorl_search left">
+						<a id="c-Search"><i class="icon iconfont icon-sou c-search-i"></i></a>
+						<span id="c-span-middle"></span>
+						<input type="search" name="c-search" id="c-search" value="" />
+					</div>
+					<div class="c-head-contorl_t left">
+						<i class="icon iconfont icon-tongzhi" style="font-size:25px;"></i>
+					</div>
+					<div class="c-head-contorl_login left login">
+						<a href="javascript:;" link-type="link" id="login_A" style="font-size:20px;">登录</a>
+						<ul class="c-user-contorl">
+							<li>
+								<a>个人中心</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)" id="logout">退出登录</a>
+							</li>
+						</ul>
+					</div>
+					<div class="c-head-contorl_x left">
+						<a link-type="link" style="font-size:20px;">APP下载</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Demo Notice START-->
+		<div class="c-demo_noticeCard">
+			<div class="c-demo_noticeH">
+				<h4 class="H4">消息</h4>
+				<h4 class="c-closeH4"><a href="javascript:;" class="c-close" id="demo_close">X</a></h4>
+			</div>
+			<div class="c-demo_noticeCon">
+				<ul class="demo_notice">
+					<script id="demo_notice" type="text/html">
+						<li>
+							<a href="#"><span>某某老師</span><span>在</span><span>下課聊</span><span>回復了你</span></a>
+						</li>
+					</script>
+					<script id="demo_noticeNaN" type="text/html">
+						<li>
+							<a>${message}</a>
+						</li>
+					</script>
+				</ul>
+			</div>
+		</div>
+		<!--Demo Notice END-->
+		<!--container STAR-->
+		<div id="content"></div>
+		<!--container END-->
+		<!--footer STAR-->
+		<div class="c-demo_footer">
+			<!--<img src="img/111.png" style="position: absolute;opacity: 0.5;" />-->
+			<div class="c-demo_footerBox">
+				<div class="footerWra">
+					<div class="left Introduction">
+						<h3><span class="left"><img src=" img/footerlogo.png"/></span>
+							<p style="line-height:77px;margin-left:70px;">智慧火在线课堂</p></h3>
+						<p>
+							慕课是为了改变原有的教学模式,增加教 学手段,让学生更好的学习专业知识 而搭建的网上教学平台,其主要包括观看视频功能,讨论,在线题库, 观看在线
+							实验以及考试功能,做到在线学习完整课程.
+						</p>
+						<dl>
+							<dd id="footerTop">
+								<a class="footer_A" href="#footer" link-id="about">关于我们</a>
+							</dd>
+							<dd id="footerTop">
+								<a class="footer_A" href="#footer" link-id="">联系我们</a>
+							</dd>
+							<dd id="footerTop">
+								<a class="footer_A" href="#footer" link-id="opinion">意见反馈</a>
+							</dd>
+						</dl>
+						<div class="copy">备案许可证:<span>鲁ICP备</span>1501160X</div>
+					</div>
+					<div class="right footer_Link">
+						<div class="footer_LinkBox">
+							<ul class="appUl">
+								<h4>移动app下载</h4>
+								<li class="appList" link="ios"><a>app stroe</a><span class="appImg"><img
+										src=" img/WXadmin.png"/></span></li>
+								<li class="appList" link="android"><a>android</a><span class="appImg"><img
+										src=" img/WXadmin.png"/></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--footer END-->
+		<!--用户登录-->
+		<div id="z-gray">
+			<div class="z-wrap">
+				<div class="z-hd">
+					<input type="hidden" name="LoginType" id="LoginType" value="2"/>
+					<div class="z-pic"></div>
+					<div class="z-stupic" style="display:none"></div>
+					<div class="z-teaLogin">教师登录</div>
+					<div class="z-stuLogin" style="display:none">学生登录</div>
+					<div class="z-cancel">x</div>
+				</div>
+				<input placeholder="请输入学号" type="text" class="username" />
+				<input placeholder="请输入密码" type="password" class="password" />
+				<div class="z-ft">
+					<span class="z-tl">登录</span>
+					<span class="z-sl" style="display:none">登录</span>
+					<span class="z-stuLn">学生登录></span>
+					<span class="z-teaLn" style="display:none;">教师登录></span>
+				</div>
+			</div>
+		</div>
+		<div class="appBox">
+			<div class="pngBox">
+				<span class="appClose">X</span>
+				<p><!--android下载--></p>
+				<img/>
+			</div>
+		</div>
+		<script src=" js/data.js"></script>
+		<script type="text/javascript">
+            $("#c-Search").click(function () {
+                $("#c-search").show("slow");
+            });
+            $(".appList").click(function () {
+                var appType = $(this).attr('link');
+                $('body').css({
+                    "overflow-x": "hidden",
+                    "overflow-y": "hidden"
+                });
+                if (appType == 'android') {
+                    $(".appBox").show();
+                    $(".pngBox").find('p').text('android下载');
+                    $(".pngBox").find('img').attr('src', ' img/android.png');
+                } else if (appType == 'ios') {
+                    $(".appBox").show();
+                    $(".pngBox").find('p').text('ios下载');
+                    $(".pngBox").find('img').attr('src', ' img/android.png');
+                }
+            });
+            $(".appClose").click(function () {
+                $(".appBox").hide();
+                $('body').css({
+                    "overflow-x": "auto",
+                    "overflow-y": "auto"
+                });
+            });
+            $(".c-head-contorl_x").click(function(){
+                $(window).scrollTop($("#content").height());
+			});
+		</script>
+	</body>
+
+</html>

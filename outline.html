@@ -1,0 +1,236 @@
+<title>课程介绍</title>
+<style>
+    .KCname{
+        width: 300px;
+        overflow: hidden;
+        display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>
+<div class="wrapper outline-wrapper">
+	<div class="c-outline_box">
+		<div class="c-outline_wra">
+			<div class="DH">
+				<a href="#Fullcourse">全部课程&nbsp;></a>
+                <a href="#Fullcourse">学院&nbsp;></a>
+                <script id="DH" type="text/html">
+                    <a href="#outline" class="course_cover">${course_name}</a>
+                </script>
+			</div>
+			<div class="c-outline_introduce">
+                <script id="c-outline_introduce" type="text/html">
+                    <div class="c-outline_Img left">
+                        <img src="http://admin.zhihuihuo.com.cn/${course_cover}" id="course_cover"/>
+                    </div>
+                    <div class="c-outline_enlistBox right">
+                        <div class="c-outline_enlist">
+                            <div class="c-outline_enlistTitle">
+                                <h2 id="cicourse_name">${course_name}</h2>
+                                <p>${course_description}</p>
+                                <h5>共${count}个课时<span id="course_credit">${course_credit}学分</span></h5>
+                            </div>
+                            <div class="c-outline_enlistBtn">
+                                <a class="signUp">立即报名</a>
+                                <a href="#subject">开始做题</a>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="wrapper">
+	<div class="c-outline_box">
+		<div class="c-outline_wra">
+			<div class="c-outline_tabBox left">
+				<div class="c-outline_tab_wra">
+					<div class="c-outline_tab">
+						<ul class="c-outline_tabUl">
+                            <li data-type="c-outline_table" class="color">
+                                课堂信息
+                                <span class="c-outline_tabUlAc"></span>
+                            </li>
+                            <li data-type="c-outline_vedio">
+                                视频目录
+                                <span></span>
+                            </li>
+                            <!--<li data-type="c-outline_data">-->
+                                <!--相关资料-->
+                                <!--<span></span>-->
+                            <!--</li>-->
+                            <li data-type="c-outline_subject">
+                                相关资料
+                                <span></span>
+                            </li>
+						</ul>
+					</div>
+					<div class="c-outline_tab" style="padding:35px 0 35px 0;">
+						<div class="c-outline_tabActive" id="c-outline_table">
+                            <ul>
+                                <script id="crouseLi" type="text/html">
+                                    <!--课程-->
+                                    <li class="crouseLi_Li"><h3 id="crouseLiH3">课程：</h3> <span>${course_name}</span> </li>
+                                    <!--适用专业-->
+                                    <li class="crouseLi_Li"><h3 id="crouseLiH3">适用专业：</h3><span>${course_prevc}</span></li>
+                                    <!--课程性质-->
+                                    <li class="crouseLi_Li"><h3 id="crouseLiH3">课程性质：</h3>
+                                        <span>{{if course_nature == 2}}选修{{else}}必修{{/if}}</span>
+                                    </li>
+                                    <!--课程类别-->
+                                    <li class="crouseLi_Li"><h3 id="crouseLiH3">课程类别：</h3><span>${course_att_standard}</span></li>
+                                    <!--课时-->
+                                    <li class="crouseLi_Li"><h3 id="crouseLiH3">课时：</h3> <span>${count}</span></li>
+                                    <!--学分-->
+                                    <li class="crouseLi_Li"><h3 id="crouseLiH3">学分：</h3><span>${course_credit}</span></li>
+                                    <!--先导课-->
+                                    <li><h3 id="crouseLiH3">先导课：</h3><span>${course_prevc}</span></li>
+                                    <!--后续课-->
+                                    <li class="crouseLi_Li"><h3 id="crouseLiH3">后续课：</h3><span>${course_nextc}</span></li>
+                                    <!--考核标准-->
+                                    <li class="crouseLi_Li"><h3 id="crouseLiH3">考核标准：</h3><span id="lession"></span></li>
+                                    <!--老师介绍-->
+                                    <li class="crouseLi_Li zoom"><h3 id="crouseLiH3">老师介绍：</h3><span><a href="javascript:void(0);" class="controlZoom" zoom-type="false">展开</a></span>
+                                        {{if course_participate}}
+                                        {{each course_participate}}
+                                        <ul id="teacherPer">
+                                            <li><h4 id="crouseLiH3">姓名：</h4><span>${$value.user_name}</span></li>
+                                            <li><h4 id="crouseLiH3">职称：</h4><span>${$value.teacher_jobs}</span></li>
+                                            <li><h4 id="crouseLiH3">性别：</h4><span></span></li>
+                                            <li><h4 id="crouseLiH3">个人简介：</h4><span><p>${$value.teacher_description}</p></span></li>
+                                        </ul>
+                                        {{/each}}
+                                        {{/if}}
+                                    </li>
+                                    <!--课程大纲-->
+                                    <!--<li class="crouseLi_Li zoom"><h3 id="crouseLiH3">课程大纲：</h3><span><a href="javascript:void(0);" class="controlZoom" zoom-type="false">展开</a></span><span id="Gcrouse"><a href="javascript:void(0);" class="controlZoom">展开</a></span></li>-->
+                                    <!--课程重点-->
+                                    <li class="crouseLi_Li zoom"><h3 id="crouseLiH3">课程重点：</h3><span><a href="javascript:void(0);" class="controlZoom" zoom-type="false">展开</a></span><span id="crousePoint"><a href="javascript:void(0);" class="controlZoom">展开</a></span></li>
+                                    <!--课程难点-->
+                                    <li class="crouseLi_Li zoom"><h3 id="crouseLiH3">课程难点：</h3><span><a href="javascript:void(0);" class="controlZoom" zoom-type="false">展开</a></span><span id="diffPoint"><a href="javascript:void(0);" class="controlZoom">展开</a></span></li>
+                                </script>
+                            </ul>
+						</div>
+						<div id="c-outline_vedio">
+                            <ul class="video_List">
+                                <script id="video_Ul" type="text/html">
+                                    <h3>
+                                        <div class="c-solid"></div>
+                                        <span></span>${chapters_name}
+                                    </h3>
+                                </script>
+                                <script id="video_List" type="text/html">
+                                    <li id="video_ListLi" title="点击查看本节参考文献">
+                                        <div class="c-solid"></div>
+                                        <span id="completion">1</span>
+                                        <a class="videoHTMLA" cid="${chapters_id}" link-type="${chapters_compltion}"><span class="KCname">${chapters_name}</span></a><i>视频时长:${chapters_video_timer}</i>
+                                        <input type="hidden" name="vedioUrl" id="vedioUrl" value="${chapters_videos_id}"/>
+                                    </li>
+                                </script>
+                                <script id="video_ListError" type="text/html">
+                                    <p>老师暂时还没有上传课程视频</p>
+                                </script>
+                                <script id="c_VideoLoginError" type="text/html">
+                                    <p style="margin:0;line-height: 60px;">请先登录才能查看视频目录</p>
+                                </script>
+							</ul>
+						</div>
+                        <!--question S-->
+						<div id="c-outline_subject" style="width: 99%;line-height: 60px;padding-left:15px;">
+                            <script id="c_outlineSubjectError" type="text/html">
+                                <p style="margin:0;">请先登录才能查看思考题</p>
+                            </script>
+						</div>
+                        <!--question E-->
+					</div>
+				</div>
+			</div>
+            <div class="c-outline_huDBox right">
+                <span class="heightS"></span>
+				<h3>课堂互动</h3>
+                <div class="z-interHd" id="thumb">
+					<div class="z-box">
+                        <ul class="chapter_List">
+                            <script id="chapter_List" type="text/html">
+                                <li class="chapter_ListLi">
+                                    <span id="oUsername">${chapterchat_username}:</span>
+                                        <span id="oContent">
+                                        <p>${chapterchat_content}</p>
+                                    </span>
+                                    <span style="float: right;font-size:12px;">
+                                        <a href="javascript:;" class="outline_Like"
+                                           chapterchat-id="${chapterchat_id}"><span>${chapterchat_likenum}</span>点赞</a>
+                                        <a href="javascript:;" class="chapter_replay">回复</a>
+                                        ${chapterchat_createtime}
+                                    </span>
+                                    <div class="chapter_replayBox">
+									<textarea class="chapter_replayInp" onmousedown="s(event,this)"></textarea>
+                                        <a href="javascript:;" class="chapter_replaySend z-outline_send"
+                                           chapterchat-id="${chapterchat_id}">提交</a>
+                                    </div>
+                                    {{each children}}
+                                    <li class="chapter_replayLi">
+                                        <span id="oReusername">${$value.chapterchat_username}回复:</span>
+                                        <span id="oRecontent"><p>${$value.chapterchat_content}</p></span>
+                                        <span style="float: right;font-size:12px;">
+                                            ${$value.chapterchat_createtime}
+                                        </span>
+                                    </li>
+                                    {{/each}}
+                                </li>
+                            </script>
+                        </ul>
+                    </div>
+				</div>
+				<div class="z-interFt" contenteditable="true"></div>
+                <input type="button" name="outline_btn" id="outline_btn" value="提交" class='z-outline_send'/>
+                </input>
+		</div>
+	</div>
+</div>
+    <!--<script type="text/javascript" src="http://cryptojs.altervista.org/api/functions_cryptography.js"></script>-->
+<script type="text/javascript">
+    $(window).scrollTop(0);
+    function s(e, a) {
+        if (e && e.preventDefault) {
+            e.preventDefault();
+        } else {
+            window.event.returnValue = false;
+        }
+        a.focus();
+    };
+    $('.c-outline_tabUl li').click(function () {
+        $('.c-outline_tabUl li').find('span').removeClass('c-outline_tabUlAc');
+        $(this).find('span').addClass('c-outline_tabUlAc');
+        $(this).addClass("color").siblings().removeClass("color");
+	});
+    $('.c-outline_tabUl li').click(function () {
+		var tabs_url = $(this).attr('data-type');
+        $('#' + tabs_url).addClass('c-outline_tabActive').siblings().removeClass('c-outline_tabActive')
+	});
+
+	//滚动条
+//	$(function() {
+//		$(".z-interHd").panel({
+//			iWheelStep: 10
+//		});
+//	});
+    $('.chapter_replay').live('click', function () {
+        $(this).parent().next().toggle();
+    });
+    $(".controlZoom").die().live("click",function(){
+        var that = this;
+        var zoomType = $(this).attr("zoom-type");
+        if(zoomType == "false"){
+            $(that).text("收起")
+            $(that).parent().parent().addClass("showZoom");
+            $(that).attr("zoom-type","true");
+        }else{
+            $(that).text("展开")
+            $(that).parent().parent().removeClass("showZoom");
+            $(that).attr("zoom-type","false");
+        }
+    });
+</script>
+<script src=" js/outline/outline.js"></script>

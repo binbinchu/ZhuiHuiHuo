@@ -1,0 +1,333 @@
+<link rel="stylesheet" href=" css/l-index.css"/>
+<link rel="stylesheet" href=" css/style.css"/>
+<div id="content" style="margin-top:50px;">
+    <div class="left fl">
+        <div class="banner">
+            <div class="img fl">
+                <img/>
+			</div>
+            <ul class="info fr fr">
+                <li class="Tname"></li>
+                <li class="Tschool">所属学校</li>
+                <li class="Ttel">联系方式</li>
+                <li class="Taddress">工作地址</li>
+                <li class="modify userEditor">编辑资料</li>
+            </ul>
+        </div>
+        <div class="myclass">
+            <ul class="fr">
+                <li class="teacherLi active">我的课程管理</li>
+                <li class="teacherLi">我的学生管理</li>
+            </ul>
+		</div>
+	</div>
+    <div class="Tab">
+        <div class="right fl Tabs">
+            <div class="r_class">
+                <h3>我参与的课</h3>
+                <ul class="r_ul">
+                    <script id="r_ul" type="text/html">
+                        <li>
+                            <a href="javascript:;">
+                                <img src="http://admin.zhihuihuo.com.cn/${course_cover}"/>
+                                <div class="r_ul_t">
+                                    <p>${course_name}</p>
+                                    <table>
+                                        <tr>
+                                            <td>课件</td>
+                                            <td>试题</td>
+                                            <td>视频</td>
+                                        </tr>
+                                        <tr>
+                                            <td>${relatednum}</td>
+                                            <td>${exampapernum}</td>
+                                            <td>${videonum}</td>
+                                        </tr>
+                                    </table>
+                                    <p class="three">
+                                        <span class="fl">创建时间</span>
+                                        <span class="fr">${course_createtime}</span>
+                                    </p>
+                                    <p class="three">
+                                        <span class="fl">创建人</span>
+                                        <span class="fr">${course_create_teacher_id}</span>
+                                    </p>
+                                </div>
+                            </a>
+                        </li>
+                    </script>
+                    <script id="r_ulError" type="text/html">
+                        <p>老师,您还没有上传课程!</p>
+                    </script>
+                </ul>
+            </div>
+            <div class="footer"></div>
+        </div>
+        <div class="right_other fl Tabs">
+            <div class="Tchose">
+                <select class="courses">
+                    <option>请选择</option>
+                    <script id="courses" type="text/html">
+                        <option course-id="${course_id}">${course_name}</option>
+                    </script>
+                </select>
+                <select class="classes">
+                    <option>请选择</option>
+                    <script id="classes" type="text/html">
+                        {{if theclass_name}}
+                        <option theclass-id="${theclass_id}">${theclass_name}</option>
+                        {{else}}
+                        <option>暂无报名</option>
+                        {{/if}}
+                    </script>
+                </select>
+                <button class="Tsearch">搜索</button>
+            </div>
+            <div class="Tstudents">
+                <table border="1" cellspacing="1" cellpadding="1" class="TsList">
+                    <thead>
+                    <th>姓名</th>
+                    <th>成绩</th>
+                    </thead>
+                    <tbody>
+                    <script id="TsList" type="text/html">
+                        <tr id="TsList_Tr">
+                            <td>${user_name}</td>
+                            <td>${score}</td>
+                        </tr>
+                    </script>
+                    <script id="TsListError" type="text/html">
+                        <tr id="TsList_Tr">
+                            <td>${message}</td>
+                        </tr>
+                    </script>
+                    </tbody>
+                </table>
+            </div>
+		</div>
+	</div>
+</div>
+<div class="userEditorWra">
+    <div class="userEditorBox">
+        <span id="close">X</span>
+        <form id="userEditorFormImg">
+            <div class="container">
+                <div class="imageBox">
+                    <div class="thumbBox"></div>
+                    <div class="spinner" style="display: none"></div>
+                </div>
+                <div class="input-group">
+                    <label>
+                        您的新昵称:
+                        <input type="text" name="newusername" id="newusername" class="mytxt" maxlength="4"/>
+                    </label>
+                </div>
+                <div class="action">
+                    <div class="new-contentarea tc">
+                        <a href="javascript:void(0)" class="upload-img">
+                            <label for="upload-file">请先选择图片...</label>
+                        </a>
+                        <input type="file" class="" name="upload-file" id="upload-file"/>
+                    </div>
+                    <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+">
+                    <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-">
+                    <input type="button" class="Btnsty_peyton" id="userImg" value="上传">
+                </div>
+            </div>
+        </form>
+        <form id="userEditorFormPassword">
+            <div class="input-group">
+                <label>
+                    您的原密码:
+                    <input type="password" name="oldPassword" id="oldPassword" value="" class="mytxt"/>
+                </label>
+                <label>
+                    您的新密码:
+                    <input type="password" name="newPassword" id="newPassword" value="" class="mytxt"/>
+                </label>
+                <label>
+                    重复新密码:
+                    <input type="password" name="reNewPassword" id="reNewPassword" value="" class="mytxt"/>
+                </label>
+            </div>
+            <div class="passwordSend">
+                <input type="button" class="Btnsty_peyton" id="userPassword" value="确认">
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src=" js/userEditor.js"></script>
+<script type="text/javascript">
+    $(".teacherLi").live('click', function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        var index = $(this).index();
+        $(".Tabs").eq(index).show().siblings().hide();
+    });
+    //编辑资料
+    $(".userEditor").click(function(){
+        $(".userEditorWra").show("slow");
+        $('body').css({
+            "overflow-x":"hidden",
+            "overflow-y":"hidden"
+        });
+        return false;
+    });
+    $("#close").click(function(){
+        $(".userEditorWra").hide("slow");
+        $('body').css({
+            "overflow-x":"auto",
+            "overflow-y":"auto"
+        });
+        return false;
+    });
+</script>
+<script type="text/javascript">
+    var username = sessionStorage.getItem("username");
+    var uid = sessionStorage.getItem("uid");
+    var userimg = sessionStorage.getItem("userimg");
+    var userLevel = sessionStorage.getItem("userLevel");
+    var teacher_jobs = sessionStorage.getItem("teacher_jobs"); //职位
+    var teacher_description = sessionStorage.getItem("teacher_description"); //简介
+    var teacher_phone = sessionStorage.getItem("teacher_phone"); //电话
+    var teacher_collegeid = sessionStorage.getItem("teacher_collegeid");
+    var teacher_avatar = sessionStorage.getItem("teacher_avatar");
+    if (uid) {
+        $(".Tname").html(username + '(' + teacher_jobs + ')');
+        $(".Tschool").html(teacher_collegeid);
+        $(".Ttel").html(teacher_phone);
+        if (!userimg) {
+            $(".img img").attr("src", "img/admin.png");
+        } else {
+            $(".img img").attr("src", "http://admin.zhihuihuo.com.cn/" + userimg);
+        }
+    }
+    ;
+    //老师的课程
+    $.ajax({
+        type: "get",
+        url: "http://admin.zhihuihuo.com.cn/api.php/MyCourse",
+        dataType: 'JSON',
+        data: {
+            uid: uid
+        },
+        success: function (data) {
+            if(data.state == 0){
+                $("#r_ulError").tmpl("").appendTo(".r_ul");
+            }else{
+                for (i in data.data) {
+                    $("#r_ul").tmpl(data.data[i]).appendTo(".r_ul");
+
+                }
+            }
+
+        }
+    });
+    //老师的学生
+    $.ajax({
+        type: "get",
+        url: "http://admin.zhihuihuo.com.cn/api.php/CourseList",
+        dataType: 'JSON',
+        success: function (data) {
+            for (i in data.data) {
+                $("#courses").tmpl(data.data[i]).appendTo(".courses");
+            }
+        }
+    });
+    $(".courses").change(function () {
+        var cid = $(this).find("option:selected").attr("course-id");
+        $.ajax({
+            type: "get",
+            url: "http://admin.zhihuihuo.com.cn/api.php/Theclass",
+            dataType: 'JSON',
+            data: {
+                cid: cid
+            },
+            success: function (data) {
+                console.log(data)
+                $(".classes option").remove();
+                for (i in data.data) {
+                    $("#classes").tmpl(data.data[i]).appendTo(".classes");
+                }
+                ;
+            }
+        });
+    });
+    $.ajax({
+        type: "post",
+        url: "http://admin.zhihuihuo.com.cn/api.php/MyStudent",
+        dataType: 'JSON',
+        data: {
+            uid: uid,
+        },
+        success: function (data) {
+            for (i in data.data) {
+                $("#TsList").tmpl(data.data[i]).appendTo(".TsList");
+            }
+        }
+    });
+    $(".Tsearch").live('click', function () {
+        var cid = $(".courses").find("option:selected").attr("course-id");
+        var tid = $(".classes").find("option:selected").attr("course-id");
+        $.ajax({
+            type: "post",
+            url: "http://admin.zhihuihuo.com.cn/api.php/MyStudent",
+            dataType: 'JSON',
+            data: {
+                uid: uid,
+                cid: cid,
+                tid: tid
+            },
+            success: function (data) {
+                if(data.state == 0){
+                    $("#TsListError").tmpl(data).appendTo(".TsList");
+                }else{
+                    $("tbody tr").remove();
+                    for (i in data.data) {
+                        $("#TsList").tmpl(data.data[i]).appendTo(".TsList");
+                    }
+                }
+
+            }
+        });
+    });
+    //头像/名称/修改
+    $("#userImg").click(function () {
+        var newusername = $("#newusername").val();
+        var password = sessionStorage.getItem("password");
+        var admin = sessionStorage.getItem("admin");
+        $('#userEditorFormImg').ajaxSubmit({
+            type: "post",
+            url: "http://admin.zhihuihuo.com.cn/api.php/EditUser",
+            dataType: 'JSON',
+            data: {
+                uid: uid,
+                username: newusername
+            },
+            success: function (data) {
+                alert(data.message);
+                TeacherLogin(admin, password);
+            }
+        });
+
+    });
+    //密码修改
+    $("#userPassword").click(function () {
+        var password = $("#oldPassword").val();
+        var new_password = $("#newPassword").val();
+        var repeat_password = $("#reNewPassword").val();
+        $("#userEditorFormPassword").ajaxSubmit({
+            url: 'http://admin.zhihuihuo.com.cn/api.php/EditPass',
+            dataType: 'JSON',
+            data: {
+                uid: uid,
+                password: password,
+                new_password: new_password,
+                repeat_password: repeat_password
+            },
+            success: function (data) {
+                alert(data.message);
+            }
+        });
+    });
+
+</script>

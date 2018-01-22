@@ -1,0 +1,122 @@
+.c-head{
+	display:none;
+}
+/*内容开始*/
+#z-main{
+	min-width: 1236px;
+	width:100%;
+}
+.z-hd{
+    position: fixed;
+    top: 0;
+	height:100px;
+    width: 100%;
+	background:white;
+    -webkit-box-shadow: 0 0 25px #ccc;
+    -moz-box-shadow: 0 0 25px #ccc;
+    box-shadow: 0 0 25px #ccc;
+    padding:0px 100px; 
+}
+.z-hd .z-queName{
+	font:21px/100px "微软雅黑";
+	color:black;
+    width:32%;
+    text-align:center;
+}
+.z-hd .z-time{
+	font:20px/100px "微软雅黑";
+	color:red;
+	text-align:center;
+}
+.z-pack{
+	width:36%;
+	text-align:center;
+}
+.z-hd .z-answer{
+    font: 19px/45px "微软雅黑";
+    color: white;
+    width: 13%;
+    height: 50px;
+    background: #02A8F3;
+    border-radius: 34px;
+    text-align: center;
+    display: inline-block;
+    margin:30px 10px 0 0;
+    cursor: pointer;
+}
+
+.z-hd .z-exit{
+    font: 19px/45px "微软雅黑";
+    color: white;
+    background: #F94829;
+    width: 9%;
+    height: 49px;
+    text-align: center;
+    border-radius: 43px;
+    display: inline-block;
+    margin-top:30px;
+    cursor: pointer;
+}
+
+
+.z-ft{
+	width:63%;
+	background:white;
+	margin:5px auto 40px;
+	padding:17px 0px  40px 0px;
+}
+.z-ft .z-ftLt{
+	width:100%;
+    margin-top: 100px;
+}
+
+.z-card {
+	width: 87%;
+	margin: 0 auto;
+	padding: 0 18px;
+}
+
+.z-card textarea {
+    text-align: left;
+    height: 107px;
+    width: 360px;
+}
+.topic{
+    height: 107px;
+    width: 360px;
+    border:1px solid #8c8c8c;
+    outline:none;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+ul.z-select {
+    margin: 5px 0px 20px 0px;
+}
+
+ul.z-select li {
+    height: 30px;
+    line-height: 30px;
+
+	
+}
+.z-question{
+	font:20px "微软雅黑";
+}
+.z-select label{
+	font:18px "微软雅黑";
+}
+
+.z-submit{
+	display:none;width:332px;height:385px;position:absolute;
+	z-index:2;
+}
+
+#z-shade{
+    position: fixed;
+    top:0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.3);
+	display: none;
+	z-index: 1;
+}

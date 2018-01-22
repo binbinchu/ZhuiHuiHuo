@@ -1,0 +1,581 @@
+body {
+    font-family: "微软雅黑";
+}
+
+
+/*内容开始*/
+
+#z-main {
+	min-width: 1300px;
+    width: 65%;
+    margin: 0px auto 120px;
+    padding-top: 50px;
+}
+
+#z-main .z-mainHd {
+	overflow: hidden;
+    height: 170px;
+    background: white;
+    margin-bottom: 20px;
+}
+
+#z-main .z-mainHd .z-mainHL {
+    width: 20%;
+    height: 170px;
+    line-height: 170px;
+    text-align: center;
+}
+
+#z-main .z-mainHd .z-mainPic {
+    width: 140px;
+    height: 140px;
+    display: inline-block;
+	vertical-align: middle;
+    border-radius: 50%;
+}
+
+#z-main .z-mainHd .z-mainHR {
+    width: 80%;
+    height: 120px;
+    margin-top: 23px;
+}
+
+#z-main .z-mainHd .z-mainHR .z-mainMsghd {
+    height: 40px;
+    margin: 15px 0px;
+}
+
+.userEditor {
+    background: #02A8F3;
+    border-radius: 20px;
+    height: 33px;
+    width: 105px;
+    color: white;
+}
+
+.userEditor:hover {
+    cursor: pointer;
+}
+
+#z-main .z-mainHd .z-mainHR .z-mainMsgft {
+    height: 40px;
+}
+
+#z-main .z-mainHd .z-mainHR .z-mainMsgft div {
+    margin-left: 6px;
+    padding: 2px 0;
+}
+
+#z-main .z-mainHd .z-mainHR .z-mainMsgft :nth-child(1) {
+    font: 20px "微软雅黑";
+    color: black;
+}
+
+#z-main .z-mainHd .z-mainHR .z-mainMsgft :nth-child(2) {
+    color: #24B4F5;
+}
+
+#z-main .z-mainHd .z-mainHR .z-mainMsghd span {
+    line-height: 40px;
+    font: 25px/40px "微软雅黑";
+	margin-left: 50px;
+}
+
+#z-main .z-mainFt {
+    width: 100%;
+    background: white;
+}
+
+#z-main .z-mainFt .z-content .z-topic-listItem {
+    display: none;
+}
+
+#z-main .z-mainFt .z-course>li:hover {
+    background: #F7F7F7;
+    cursor: pointer !important;
+}
+
+#z-main .z-mainFt .z-content .z-mainMc {
+    display: block;
+}
+
+.hover {
+    background: #F7F7F7;
+    color: #02A8F3;
+}
+
+#z-main .z-mainFt .z-course {
+    width: 20%;
+    height: 260px;
+    position: relative;
+}
+
+#z-main .z-mainFt .z-course .z-border {
+    display: inline-block;
+    position: absolute;
+	bottom: 228px;
+    left: -26px;
+    height: 4px;
+    width: 58px;
+    background: #02A8F3;
+    transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    /* IE 9 */
+    -moz-transform: rotate(270deg);
+    /* Firefox */
+    -webkit-transform: rotate(270deg);
+    /* Safari 和 Chrome */
+    -o-transform: rotate(270deg);
+    /* Opera */
+}
+
+#z-main .z-mainFt .z-course li {
+    height: 60px;
+    padding-left: 35px;
+    font: 16px/60px "微软雅黑";
+}
+
+
+/*我的下课聊-我的帖子部分开始*/
+
+#z-main .z-mainFt .z-content {
+    width: 80%;
+}
+
+#z-main .z-mainFt .z-content .z-mainMp {
+    width: 100%;
+	padding-bottom: 20px;
+}
+
+#z-main .z-mainFt .z-content .z-posts {
+    height: 69px;
+    position: relative;
+}
+
+#z-main .z-mainFt .z-content .z-posts .z-smallBar {
+    display: inline-block;
+    position: absolute;
+    left: 50px;
+    bottom: -1px;
+    height: 4px;
+    width: 51px;
+    background: #02A8F3;
+}
+
+.one {
+    color: red;
+}
+
+#z-main .z-mainFt .z-content .z-posts li {
+	height: 69px;
+    font: 20px "微软雅黑";
+    margin: 0 40px;
+}
+
+#z-main .z-mainFt .z-content .z-posts li > a {
+    padding: 5px 0 5px 0;
+	line-height: 100px;
+    font: 22px/80px "微软雅黑";
+    color: #666666;
+}
+
+.selected {
+    color: deepskyblue !important;
+}
+
+#z-main .z-mainFt .z-content .z-mainMp .z-sue > div {
+	height: 45px;
+    line-height: 45px;
+    padding: 0 18px 0 43px;
+    font-size: 21px;
+}
+
+#z-main .z-mainFt .z-content .z-mainMp .z-sue > div:hover {
+    cursor: pointer;
+    background: #F7F7F7;
+}
+
+#z-main .z-mainFt .z-content .z-mainMp .z-sue {
+    margin-top: 20px;
+}
+
+.z-sue div span a {
+    color: red;
+}
+
+#z-main .z-mainFt .z-content .z-mainMp .z-details {
+    display: none;
+}
+
+#z-main .z-mainFt .z-content .z-mainMp .z-show {
+    display: block;
+}
+
+.z-backList {
+    border-top: 1px solid #ccc;
+    margin-left: 40px;
+    padding: 8px 0px;
+}
+
+.z-backList .z-list-hd,
+.z-list-ft {
+    margin: 12px 26px 10px 0px;
+}
+
+.z-backList .z-left .z-list-hd {
+    font: 23px "微软雅黑";
+    color: #F94829;
+}
+
+.z-backList .z-left .z-list-ft {
+    font-size: 21px;
+}
+
+.z-backList .z-right .z-list-hd {
+    font: 20px "微软雅黑";
+    color: #999;
+}
+
+.z-backList .z-right .z-list-ft>span>a{
+    display: inline-block;
+    font: 22px "微软雅黑";
+    color: white;
+    border-radius: 20px;
+    width: 100px;
+    height: 33px;
+    text-align: center;
+    background: #02A8F3;
+    cursor: pointer;
+}
+
+.z-backList .z-left .z-list-ft :nth-child(odd) {
+    color: #999;
+}
+
+
+/*我的下课聊-我的帖子部分结束*/
+
+/*我的课程部分开始*/
+
+#z-main .z-mainFt .z-content .z-mainMc {
+    width: 100%;
+}
+
+#z-main .z-mainFt .z-content .z-mainMc .z-MD {
+    overflow: hidden;
+    padding: 10px;
+}
+
+#z-main .z-mainFt h4 {
+    margin-left: 30px;
+	padding-top: 10px;
+    color: #13AEF4;
+}
+
+#z-main .z-mainFt .z-MD ul {
+    width: 100%;
+    height: 200px;
+    margin-top: 15px;
+}
+
+#z-main .z-mainFt .z-MD ul li {
+    width: 25%;
+    float: left;
+    padding: 10px;
+}
+
+.user_Li:hover {
+    border: 1px solid #eee;
+    /*-moz-box-shadow: 1px 1px 20px #A9A9A9;
+    box-shadow: 1px 1px 20px #A9A9A9;*/
+}
+
+#z-main .z-mainFt .z-MD ul li .z-pic {
+    width: 85%;
+    height: 170px;
+    margin-left: 25px;
+}
+
+#z-main .z-mainFt .z-MD ul li .z-txt {
+    width: 85%;
+    margin: 5px auto;
+}
+
+#z-main .z-mainFt .z-MD ul li .z-txt a {
+    color: black;
+    font-size: 18px;
+}
+
+
+/*我的课程部分结束*/
+
+
+/*我的题库开始*/
+
+#z-main .z-mainFt .z-content .z-mainMr {
+}
+
+#z-main .z-mainFt .z-content .z-mainMr th {
+    width: 240px;
+}
+
+#z-main .z-mainFt .z-content .z-mainMr tr {
+    text-align: center;
+    height: 50px
+}
+
+.z-pagination ul {
+    margin: 49px 0 20px;
+    height: 80px;
+}
+
+.z-pagination ul li {
+    float: left;
+    width: 329px;
+    background: #F7F7F7;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+}
+
+.z-pagination ul .z-list span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 0px 2px;
+    font-size: 20px;
+    color: white;
+    background: #02A8F3;
+    border-radius: 50%;
+    line-height: 40px;
+    vertical-align: middle
+}
+
+.z-pagination .z-pre {
+    padding-left: 140px;
+    font-size: 20px;
+    color: #666C7C;
+}
+
+.z-pagination .z-next {
+    padding-right: 140px;
+    font-size: 20px;
+    color: #666C7C;
+}
+
+
+/*我的题库结束*/
+
+
+/*我的成绩开始*/
+
+#z-main .z-mainFt .z-grade ul {
+    width: 100%;
+    margin-top: 15px;
+}
+
+#z-main .z-mainFt .z-grade ul li {
+    width: 33%;
+    float: left;
+}
+
+#z-main .z-mainFt .z-grade ul li .z-pic {
+    width: 85%;
+    height: 170px;
+    margin-left: 25px;
+}
+
+#z-main .z-mainFt .z-grade ul li .z-txt {
+    width: 85%;
+    margin: 5px auto;
+}
+
+#z-main .z-mainFt .z-grade ul li .z-txt .z-txtHd {
+    background: #F7F7F7;
+    position: relative;
+}
+
+.z-grade .z-txtHd p {
+    padding: 10px 0;
+}
+
+.z-grade .z-txtHd .z-in {
+	width: 12px;
+    height: 12px;
+    border-left: 3px solid #0187D0;
+    border-bottom: 3px solid #0187D0;
+    position: absolute;
+    right: 27px;
+    top: 24px;
+    transform: rotate(224deg);
+    -ms-transform: rotate(224deg);
+    /* IE 9 */
+    -moz-transform: rotate(224deg);
+    /* Firefox */
+    -webkit-transform: rotate(224deg);
+    /* Safari 和 Chrome */
+    -o-transform: rotate(224deg);
+    /* Opera */
+    /*改变后*/
+    /*transform: rotate(315deg);*/
+}
+
+.z-card > a {
+    cursor: pointer;
+}
+
+.z-result div {
+	display: none;
+}
+
+#z-ONE {
+    margin-bottom: 20px;
+}
+
+.z-grade .z-txtHd p :nth-child(1) {
+    font: 19px "微软雅黑";
+    margin-left: 10px;
+}
+
+.z-grade .z-txtHd p :nth-child(2) {
+    font: 19px "微软雅黑";
+    color: red;
+}
+
+.z-grade .z-cancel {
+    background: #0187D0;
+	height: 40px;
+    border-radius: 0 0 5px 5px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.z-grade .z-cancel div {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    background: white;
+    border-radius: 50%;
+    line-height: 25px;
+    vertical-align: middle;
+}
+
+
+/*我的成绩结束*/
+
+.userEditorWra {
+    display: none;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+}
+
+.userEditorBox {
+    position: relative;
+    width: 500px;
+    height: 650px;
+    background: white;
+    margin: 70px auto;
+    padding: 60px 15px 0px 15px;
+}
+
+#close {
+    position: absolute;
+    text-align: center;
+    height: 25px;
+    width: 25px;
+    right: 25px;
+    top: 25px;
+    transition: all 1s;
+}
+
+#close:hover {
+    cursor: pointer;
+    color: red;
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    /* Internet Explorer */
+    -moz-transform: rotate(90deg);
+    /* Firefox */
+    -webkit-transform: rotate(90deg);
+    /* Safari 和 Chrome */
+    -o-transform: rotate(90deg);
+    /* Opera */
+}
+
+.input-group {
+    display: block;
+    overflow: hidden;
+}
+
+.input-group label {
+    text-align: center;
+    display: block;
+    margin: 25px 0 5px 0;
+}
+
+.mytxt {
+    color: #333;
+    line-height: normal;
+    font-family: "Microsoft YaHei", Tahoma, Verdana, SimSun;
+    font-style: normal;
+    font-variant: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-weight: normal;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    font-size: 15px;
+    outline-width: medium;
+    outline-style: none;
+    outline-color: invert;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    text-shadow: 0px 1px 2px #fff;
+    background-attachment: scroll;
+    background-repeat: repeat-x;
+    background-position-x: left;
+    background-position-y: top;
+    background-size: auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+    background-color: rgb(255, 255, 255);
+    margin-right: 8px;
+    border-top-color: #ccc;
+    border-right-color: #ccc;
+    border-bottom-color: #ccc;
+    border-left-color: #ccc;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+}
+
+.mytxt:focus {
+    border: 1px solid #fafafa;
+    -webkit-box-shadow: 0px 0px 6px #007eff;
+    -moz-box-shadow: 0px 0px 5px #007eff;
+    box-shadow: 0px 0px 5px #007eff;
+}
+
+.passwordSend {
+    width: 40px;
+    margin: 20px auto;
+}
+
+
+/*内容结束*/

@@ -1,0 +1,169 @@
+/*内容开始*/
+
+#z-main {
+	min-width: 1300px;
+    width: 65%;
+    margin: 0px auto 120px;
+    padding-top: 50px;
+}
+
+#z-main .z-mainHd {
+	overflow: hidden;
+    /*	height:170px;*/
+    background: white;
+    padding-bottom: 82px;
+}
+
+#z-main .z-mainHd .z-mainHL {
+    width: 20%;
+	/*height:170px;*/
+	/*line-height:170px;*/
+    text-align: center;
+}
+
+#z-main .z-mainHd .z-mainPic {
+    width: 140px;
+    height: 140px;
+    display: inline-block;
+	vertical-align: middle;
+    border-radius: 50%;
+    margin-top: 19px;
+    overflow: hidden;
+}
+
+#z-main .z-mainHd .z-mainPic img {
+    width: 100%;
+    height: 100%;
+}
+
+#z-main .z-mainHd .z-mainHR {
+    width: 80%;
+	/*height:120px;*/
+    margin-top: 23px;
+    color: black;
+	font: bold 18px "微软雅黑";
+}
+
+#z-main .z-mainHd .z-mainHR .z-mainMsghd {
+    height: 40px;
+    margin: 15px 0px;
+}
+
+#z-main .z-mainHd .z-mainHR .z-mainMsghd span {
+    line-height: 40px;
+    font: 25px/40px "微软雅黑";
+	margin-left: 50px;
+}
+
+/*#z-main .z-mainHd .z-mainHR div{
+	margin-left: 50px;
+}*/
+
+#z-main .z-mainHd .z-mainHR .z-gradeMsg span {
+    height: 21px;
+    border-radius: 20px;
+    display: inline-block;
+    line-height: 21px;
+    vertical-align: middle;
+}
+
+#z-main .z-mainHd .z-mainHR .z-message {
+    margin: 38px 50px;
+    color: #56C5F7;
+}
+
+#z-main .z-mainHd .z-mainHR .z-gradeMsg {
+    margin: 15px 50px;
+}
+
+#z-main .z-mainHd .z-mainHR .z-gradeMsg .z-wbar,
+.z-evbar {
+    width: 340px;
+    height: 21px;
+    border-radius: 20px;
+    background: #CCCCCC;
+    margin: 0 30px;
+    display: inline-block;
+}
+
+#z-main .z-mainHd .z-mainHR .z-gradeMsg .z-level {
+    width: 100px;
+    height: 21px;
+}
+
+#z-main .z-mainHd .z-mainHR .z-gradeMsg .z-level_level {
+    text-align: right;
+    width: 77px;
+    height: 21px;
+}
+
+.z-wbar {
+    display: inline-block;
+    position: relative;
+}
+
+.z-gradeMsg .z-wbar .z-barLt {
+    left: 0;
+    position: absolute;
+    /*width:200px;*/
+    background: #0187D0;
+    height: 21px;
+    border-radius: 20px 0px 0px 20px;
+    line-height: 21px !important;
+    margin: 0 !important;
+    z-index: 99;
+}
+
+.z-gradeMsg .z-wbar .z-barRt {
+    left: 0;
+    position: absolute;
+    width: 100%;
+    background: #B2E4FB;
+    border-radius: 20px;
+    line-height: 21px;
+    height: 21px;
+    margin: 0;
+    text-align: right;
+}
+
+.z-gradeMsg .z-evbar .z-barLt {
+    z-index: 99;
+    position: absolute;
+    width: 340px;
+    background: #0187D0;
+    height: 21px;
+    border-radius: 20px;
+    margin: 0;
+}
+
+.z-gradeMsg .z-evbar .z-barRt {
+    position: absolute;
+    width: 340px;
+    background: #B2E4FB;
+    height: 21px;
+    border-radius: 20px;
+    margin: 0;
+}
+
+.z-explain {
+    margin-left: 50px;
+    width: 60%;
+}
+
+.z-explain th,
+td {
+    width: 33%;
+    height: 43px;
+}
+
+.z-explain tr > td:last-child {
+	padding-left: 153px;
+}
+
+.z-explain tr:nth-child(2) {
+    text-align: center;
+}
+
+.z-explain tr:nth-child(1) {
+    text-align: left;
+}

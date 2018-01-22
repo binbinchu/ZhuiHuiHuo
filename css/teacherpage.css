@@ -1,0 +1,116 @@
+#teacher_description {
+    margin: 15px 25px 15px 25px;
+}
+
+.TsStu {
+    margin: 15px 25px 15px 24px;
+}
+
+.TsStu td {
+    text-align: center;
+    width: 100px;
+    padding: 10px 5px 10px 5px;
+}
+/*内容开始*/
+#z-main{
+	min-width: 1300px;
+	width:65%;
+	margin:0px auto 120px;	
+	padding-top:50px;		
+}
+#z-main .z-mainHd{
+	overflow: hidden;
+	height:170px;
+	background:#02A8F3;
+	margin-bottom:20px;
+	
+}
+#z-main .z-mainHd .z-mainHL{
+	width:20%;
+	height:170px;
+	line-height:170px;
+	text-align:center;
+}
+#z-main .z-mainHd .z-mainPic{
+	width:140px;
+	height:140px;
+	background:black;
+	display:inline-block;
+	vertical-align: middle;
+	border-radius:50%;
+}
+
+#z-main .z-mainHd .z-mainHR{
+	width:80%;
+	height:120px;
+	margin-top:23px;
+	color:white;
+	
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsghd{
+	height:40px;
+	margin:15px 0px;
+}
+
+#z-main .z-mainHd .z-mainHR .z-mainMsgft{
+	height:40px;
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsghd span{
+	line-height:40px;
+	font:  25px/40px "微软雅黑";
+	margin-left: 50px;
+	
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsgft span{
+	font:20px/40px "微软雅黑";	
+	
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsgft :nth-child(1){
+	margin-left: 50px;
+}
+#z-main .z-mainHd .z-mainHR .z-mainMsgft :not(first-child){
+	margin-left:18px;
+}
+
+#z-main .z-mainFt{
+	width:100%;
+	background:white;
+}
+#z-main .z-mainFt .z-hd{
+	width:100%;
+	height:150px;
+}
+
+#z-main .z-mainFt .z-ft{
+	width:100%;
+	height:310px;
+	
+}
+#z-main .z-mainFt  h4{
+	margin-left:24px;
+	padding-top: 10px;
+	color:#13AEF4;
+}
+#z-main .z-mainFt .z-ft ul{
+	width:100%;
+	height:200px;
+	margin-top:15px;
+}
+#z-main .z-mainFt .z-ft ul li{
+	width:25%;
+	height:200px;
+	float:left;
+	
+}
+#z-main .z-mainFt .z-ft ul li .z-pic{
+	width:85%;
+	height:170px;
+	margin-left:25px;
+}
+#z-main .z-mainFt .z-ft ul li .z-txt{
+	width:85%;margin:5px auto;
+}
+#z-main .z-mainFt .z-ft ul li .z-txt a{
+	color:black;
+	font-size:18px;
+}
